@@ -85,17 +85,13 @@ namespace RunesDataBase.TableObjects
 
         [DisplayName("Dot data")] [Category("Magic Action Properties")]
         [Description("Structure, describing dot charecteristics of this magic")]
-        public MagicDotData DotData
-        {
-            get { return new MagicDotData(this); }
-        }
+        public MagicDotData DotData 
+            => new MagicDotData(this);
 
         [DisplayName("Attack data")] [Category("Magic Action Properties")]
         [Description("Structure, describing attack charecteristics of this magic")]
-        public MagicAttackData AttackData
-        {
-            get { return new MagicAttackData(this); }
-        }
+        public MagicAttackData AttackData 
+            => new MagicAttackData(this);
 
         [DisplayName("Group set")] [Category("Magic Properties")]
         [Description("??")]
@@ -147,10 +143,8 @@ namespace RunesDataBase.TableObjects
 
         [DisplayName("Ability")] [Category("Magic Properties")]
         [Description("Structure, describing dot charecteristics of this magic")]
-        public WearEq Ability
-        {
-            get { return new WearEq(this); }
-        }
+        public WearEq Ability 
+            => new WearEq(this);
 
         [DisplayName("Ability (Skill Level koef)")] [Category("Magic Properties")]
         public float AbilitySkillLevel
