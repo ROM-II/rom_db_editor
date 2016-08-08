@@ -1,0 +1,15 @@
+Runes.Net.Shared/obj/
+*.sdf
+*.opensdf
+Runes.Net.Fdb/obj/
+Runes.Net.Db/obj/
+FdbExtractor/obj/
+LuaMerger/obj
+FdbExtractor/bin/
+RunesDataBase/bin/
+RunesDataBase/obj/
+ScriptTest/obj/
+TestDB/Release/
+LuaMerger/bin/
+TestResults/
+Tests/obj/

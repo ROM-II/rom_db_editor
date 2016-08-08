@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5BF4B72C-C4B7-49C9-8C60-971E09DA6B38}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RunesDataBase</RootNamespace>
+    <AssemblyName>romdb_editor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>RoM.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fireball.CodeEditor">
+      <HintPath>..\..\firefx2\Fireball.CodeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Fireball.SyntaxDocument">
+      <HintPath>..\..\firefx2\Fireball.SyntaxDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="Fireball.Windows.Forms">
+      <HintPath>..\..\firefx2\Fireball.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer">
+      <HintPath>..\..\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.WinForms, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\HtmlRenderer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddStringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStringForm.Designer.cs">
+      <DependentUpon>AddStringForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseFormLink.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="DataBase.cs" />
+    <Compile Include="IniFile.cs" />
+    <Compile Include="RomDBDebug.cs" />
+    <Compile Include="Sql\RomDbCategory.cs" />
+    <Compile Include="Sql\RomSqlConnection.cs" />
+    <Compile Include="Sql\ShopRecord.cs" />
+    <Compile Include="SubScript\RunesDataBase.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm_EditObject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm_EditStrings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectLanguagesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectLanguagesForm.Designer.cs">
+      <DependentUpon>SelectLanguagesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StringEditFormLink.cs" />
+    <Compile Include="StructuredField.cs" />
+    <Compile Include="SubScript\RunesDataBaseImpl.cs" />
+    <Compile Include="Table.cs" />
+    <Compile Include="TableObjectEditLink.cs" />
+    <Compile Include="TableObjects\ArmorItemObject.cs" />
+    <Compile Include="TableObjects\BasicTableObject.cs" />
+    <Compile Include="TableObjects\BasicVisualTableObject.cs" />
+    <Compile Include="TableObjects\EquipmentObject.cs" />
+    <Compile Include="TableObjects\MagicObject.cs" />
+    <Compile Include="TableObjects\NpcObject.cs" />
+    <Compile Include="TableObjects\ShopObject.cs" />
+    <Compile Include="TableObjects\SpellObject.cs" />
+    <Compile Include="TableObjects\ItemObject.cs" />
+    <Compile Include="TableObjects\StatObject.cs" />
+    <Compile Include="TableObjects\TreasureObject.cs" />
+    <Compile Include="TableObjects\WeaponItemObject.cs" />
+    <Compile Include="TableObjects\ZoneObject.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddStringForm.resx">
+      <DependentUpon>AddStringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SelectLanguagesForm.resx">
+      <DependentUpon>SelectLanguagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Runes.Net.Db\Runes.Net.Db.csproj">
+      <Project>{E79782E9-D378-421F-A0C8-F0FF4ABB1C66}</Project>
+      <Name>Runes.Net.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Runes.Net.Fdb\Runes.Net.Fdb.csproj">
+      <Project>{A5A9BE65-89EE-4ED0-A6B4-CCA1DBAE4566}</Project>
+      <Name>Runes.Net.Fdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Runes.Net.Shared\Runes.Net.Shared.csproj">
+      <Project>{1E1D1EAF-F832-403F-9D40-A8CC391ABE35}</Project>
+      <Name>Runes.Net.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dialogbox-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sui.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\see_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RoM.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
