@@ -100,6 +100,16 @@ namespace Runes.Net.Db
                 throw new IndexOutOfRangeException();
             OriginalBytes.PutBytes(value, (int)field.Offset);
         }
+
+        public void SetField(string name, ulong value)
+        {
+            var field = GetFieldByName(name);
+            if (field == null)
+                throw new KeyNotFoundException();
+            if (field.Length < sizeof(ulong))
+                throw new IndexOutOfRangeException();
+            OriginalBytes.PutBytes(value, (int)field.Offset);
+        }
         public void SetField(uint offset, uint value)
         {
             if (OriginalBytes.Length-4 < offset)

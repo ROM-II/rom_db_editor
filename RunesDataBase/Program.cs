@@ -18,7 +18,7 @@ namespace RunesDataBase
             var now = DateTime.Now;
             var form = new MainForm
             {
-                Log = new Logger(string.Format("romdb_{0:ddMMyy_hhmmss}.log", now),
+                Log = new Logger($"romdb_{now:ddMMyy_hhmmss}.log",
                     !(args.Contains("/v") || args.Contains("/V")))
             };
             Application.Run(form);

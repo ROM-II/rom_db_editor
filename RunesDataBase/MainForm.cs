@@ -84,9 +84,9 @@ namespace RunesDataBase
             Log.WriteLine("User loaded languages: " + string.Join("; ", form.Languages));
             IsFDBOpened = true;
             uiStatusLabel.Text = "Loading *.db ...";
-            new Thread((list) =>
+            new Task(() =>
             {
-                var dbList = (List<string>) list;
+                var dbList = (List<string>)form.Languages;
                 foreach (var name in dbList)
                 {
                     database.LoadLanguage(name);
@@ -106,7 +106,7 @@ namespace RunesDataBase
                     saveAllToolStripMenuItem.Enabled = newStringToolStripMenuItem.Enabled = true;
                 };
                 uiTabs.Invoke(func);
-            }).Start(form.Languages);
+            }).Start();
         }
 
         private void uiButtonDoSearch_Click(object sender, EventArgs e)
@@ -274,8 +274,10 @@ namespace RunesDataBase
                 TabPages.Add(p);
             SelectTab();
             uiSearchResults.ShowItemToolTips = true;
-            var doc = new SyntaxDocument();
-            doc.Text = "db.UI_ShowObjectList(db.Equipment.Where(item => item.Rarity > RareType.Legend));";
+            var doc = new SyntaxDocument
+            {
+                Text = "db.UI_ShowObjectList(db.Equipment.Where(item => item.Rarity > RareType.Legend));"
+            };
             doc.Parser = new DefaultParser()
             {
                 Document = doc,
