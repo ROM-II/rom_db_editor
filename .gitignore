@@ -14,3 +14,4 @@ LuaMerger/bin/
 TestResults/
 Tests/obj/
 Release/
+Debug
