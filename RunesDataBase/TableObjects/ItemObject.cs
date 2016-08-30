@@ -251,13 +251,13 @@ namespace RunesDataBase.TableObjects
         public override string ToString()
         {
             var constraints = new List<string>();
-            if (PlayerClass != 0)
+            if (PlayerClass >= 0)
                 constraints.Add($"class={PlayerClass}");
-            if (Race != 0)
+            if (Race >= 0)
                 constraints.Add($"race={Race}");
-            if (Sex != 0)
+            if (Sex >= 0)
                 constraints.Add($"sex={Sex}");
-            if (MinLevel != 0)
+            if (MinLevel >= 0)
                 constraints.Add($"lvl>={MinLevel}");
             if (STR != 0) constraints.Add($"str>={STR}");
             if (AGI != 0) constraints.Add($"dex>={AGI}");
