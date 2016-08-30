@@ -462,14 +462,10 @@ namespace RunesDataBase
         private void uiSearchResults_MouseMove(object sender, MouseEventArgs e)
         {
             var lvi = uiSearchResults.GetItemAt(e.X, e.Y);
-            if (lvi != _hoveredItem)
-            {
-                _hoveredItem = lvi;
-                if (lvi == null)
-                    htmlToolTip1.SetToolTip(uiSearchResults, "");
-                else
-                    htmlToolTip1.SetToolTip(uiSearchResults, lvi.Tag.ToString().HtmlWrap("body", "bgcolor=black", "color=white"));
-            }
+            if (lvi == _hoveredItem) return;
+            _hoveredItem = lvi;
+            htmlToolTip1.SetToolTip(uiSearchResults,
+                lvi == null ? "" : lvi.Tag.ToString().HtmlWrap("body", "bgcolor=black", "color=white"));
         }
 
         public void UI_ShowHTML(string html)
@@ -480,11 +476,11 @@ namespace RunesDataBase
         {
             NavigateToObjects(new TableObjectEditLink(obj));
         }
-        public void UI_ShowObjectList(IEnumerable<BasicTableObject> objects)
+        public void UI_ShowObjectList<T>(IEnumerable<T> objects) where T : BasicTableObject
         {
             UI_ShowObjectList(objects, o => "");
         }
-        public void UI_ShowObjectList(IEnumerable<BasicTableObject> objects, DObjectAdditionalInfo descriptor)
+        public void UI_ShowObjectList<T>(IEnumerable<T> objects, Func<T, string> descriptor) where T : BasicTableObject
         {
             var sb = new StringBuilder();
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RunesDataBase.TableObjects;
@@ -141,12 +142,12 @@ namespace RunesDataBase.SubScript
             b.File.ModifiedFlag = true;
         }
 
-        public override void UI_ShowObjectList(IEnumerable<BasicTableObject> objects)
+        public override void UI_ShowObjectList<T>(IEnumerable<T> objects)
         {
             Form.UI_ShowObjectList(objects);
         }
 
-        public override void UI_ShowObjectList(IEnumerable<BasicTableObject> objects, DObjectAdditionalInfo descriptor)
+        public override void UI_ShowObjectList<T>(IEnumerable<T> objects, Func<T, string> descriptor)
         {
             Form.UI_ShowObjectList(objects, descriptor);
         }

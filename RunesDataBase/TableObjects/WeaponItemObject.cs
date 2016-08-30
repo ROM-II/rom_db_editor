@@ -63,7 +63,7 @@ namespace RunesDataBase.TableObjects
             get
             {
                 var field = Attributes.FirstOrDefault(a => a.Type == WearEquipmentType.PhysDamage);
-                return field == null ? DamagePhys : field.Value;
+                return field?.Value ?? DamagePhys;
             }
         }
 

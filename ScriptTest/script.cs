@@ -26,7 +26,7 @@ public class Main
                 item.ActualDPS > 0
                 ).ToList();
             list.Sort((a, b) => a.ActualDPS > b.ActualDPS ? -1 : (a.ActualDPS < b.ActualDPS ? 1 : 0));
-            db.UI_ShowObjectList(list, o => string.Format("level: {1}; dps: {0:F2}", ((WeaponItemObject)o).ActualDPS, ((WeaponItemObject)o).Limits.MinLevel));
+            db.UI_ShowObjectList(list, o => string.Format("level: {1}; dps: {0:F2}", o.ActualDPS, o.Limits.MinLevel));
             // SCRIPT END
         }
 
@@ -39,7 +39,7 @@ public class Main
                 item.ActualDPS > 0
                 ).ToList();
             list.Sort((a, b) => a.ActualDPS > b.ActualDPS ? -1 : (a.ActualDPS < b.ActualDPS ? 1 : 0));
-            db.UI_ShowObjectList(list, o => string.Format("level: {1}; dps: {0:F2}", ((WeaponItemObject)o).ActualDPS, ((WeaponItemObject)o).Limits.MinLevel));
+            db.UI_ShowObjectList(list, o => string.Format("level: {1}; dps: {0:F2}", o.ActualDPS, o.Limits.MinLevel));
             // SCRIPT END
         }
         /* Show 2h axes for 90 level in descending order by their DPS */
@@ -51,7 +51,7 @@ public class Main
                 item.ActualDPS > 0
                 ).ToList();
             list.Sort((a, b) => a.ActualDPS > b.ActualDPS ? -1 : (a.ActualDPS < b.ActualDPS ? 1 : 0));
-            db.UI_ShowObjectList(list, o => string.Format("level: {1}; dps: {0:F2}", ((WeaponItemObject)o).ActualDPS, ((WeaponItemObject)o).Limits.MinLevel));
+            db.UI_ShowObjectList(list, o => string.Format("level: {1}; dps: {0:F2}", o.ActualDPS, o.Limits.MinLevel));
             // SCRIPT END
         }
 
@@ -63,7 +63,7 @@ public class Main
                 stat.Stats.Any(e => e.Type == WearEquipmentType.MagicAttack)
                 ).ToList();
             list.Sort((a, b) => a.Stats[0].Value > b.Stats[0].Value ? -1 : (a.Stats[0].Value < b.Stats[0].Value ? 1 : 0));
-            db.UI_ShowObjectList(list, o => string.Join("; ", ((StatObject)o).Stats.Where(e => !e.IsEmpty)));
+            db.UI_ShowObjectList(list, o => string.Join("; ", o.Stats.Where(e => !e.IsEmpty)));
             // SCRIPT END
         }
 
@@ -75,7 +75,7 @@ public class Main
                 stat.Stats.Any(e => e.Type == WearEquipmentType.PhysAttack)
                 ).ToList();
             list.Sort((a, b) => a.Stats[0].Value > b.Stats[0].Value ? -1 : (a.Stats[0].Value < b.Stats[0].Value ? 1 : 0));
-            db.UI_ShowObjectList(list, o => string.Join("; ", ((StatObject)o).Stats.Where(e => !e.IsEmpty)));
+            db.UI_ShowObjectList(list, o => string.Join("; ", o.Stats.Where(e => !e.IsEmpty)));
             // SCRIPT END
         }
 
@@ -107,7 +107,7 @@ public class Main
             {
                 list2.AddRange(magic);
             }
-            db.UI_ShowObjectList(list2, o => ((MagicObject)o).GetDescription());
+            db.UI_ShowObjectList(list2, o => o.GetDescription());
             // SCRIPT END
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RunesDataBase.TableObjects;
 
 namespace RunesDataBase.SubScript
@@ -38,8 +39,8 @@ namespace RunesDataBase.SubScript
         public abstract IEnumerable<ShopObject> Shops { get; }
 
         public abstract void SetModified(string dataBaseName);
-        public abstract void UI_ShowObjectList(IEnumerable<BasicTableObject> objects);
-        public abstract void UI_ShowObjectList(IEnumerable<BasicTableObject> objects, DObjectAdditionalInfo descriptor);
+        public abstract void UI_ShowObjectList<T>(IEnumerable<T> objects) where T : BasicTableObject;
+        public abstract void UI_ShowObjectList<T>(IEnumerable<T> objects, Func<T, string> descriptor) where T : BasicTableObject;
         public abstract void UI_EditObject(BasicTableObject obj);
         public abstract void UI_ShowHTML(string html);
     }
