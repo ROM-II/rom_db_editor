@@ -54,7 +54,7 @@ namespace RunesDataBase.TableObjects
             get
             {
                 var field = Attributes.FirstOrDefault(a => a.Type == WearEquipmentType.PhysDefence);
-                return DefencePhys + (field == null ? 0 : field.Value);
+                return DefencePhys + (field?.Value ?? 0);
             }
         }
 
@@ -65,7 +65,7 @@ namespace RunesDataBase.TableObjects
             get
             {
                 var field = Attributes.FirstOrDefault(a => a.Type == WearEquipmentType.MagicDefence);
-                return DefenceMag + (field == null ? 0 : field.Value);
+                return DefenceMag + (field?.Value ?? 0);
             }
         }
     }

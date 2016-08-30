@@ -108,6 +108,7 @@
     <Compile Include="TableObjects\BasicTableObject.cs" />
     <Compile Include="TableObjects\BasicVisualTableObject.cs" />
     <Compile Include="TableObjects\EquipmentObject.cs" />
+    <Compile Include="TableObjects\LearnMagicObject.cs" />
     <Compile Include="TableObjects\MagicObject.cs" />
     <Compile Include="TableObjects\NpcObject.cs" />
     <Compile Include="TableObjects\ShopObject.cs" />

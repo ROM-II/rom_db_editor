@@ -78,6 +78,8 @@ namespace RunesDataBase.TableObjects
                     return new ArmorItemObject(obj);
                 case "magicobject.db":
                     return new MagicObject(obj);
+                case "learnmagic.db":
+                    return new LearnMagicObject(obj);
                 case "recipeobject.db":
                     break;
                 case "magiccollectobject.db":

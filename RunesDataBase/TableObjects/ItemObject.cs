@@ -85,10 +85,8 @@ namespace RunesDataBase.TableObjects
         }
 
         [DisplayName("Limits")] [Category("Item Properties - Basic")]
-        public LimitStruct Limits
-        {
-            get { return new LimitStruct(this); }
-        }
+        public LimitStruct Limits 
+            => new LimitStruct(this);
 
         [DisplayName("Usage Type")] [Category("Item Properties - Usage")]
         public ItemUseType UseType

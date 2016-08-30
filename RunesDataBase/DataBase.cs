@@ -32,24 +32,25 @@ namespace RunesDataBase
             var s = name.ToLowerInvariant();
             return Dbs.FirstOrDefault(db => db.FileName == s);
         }
-        public Table TreasureTable { get { return TableByName("treasureobject.db"); } }
-        public Table NpcTable { get { return TableByName("npcobject.db"); } }
-        public Table QuestNpcTable { get { return TableByName("questnpcobject.db"); } }
-        public Table ItemTable { get { return TableByName("itemobject.db"); } }
-        public Table WeaponTable { get { return TableByName("weaponobject.db"); } }
-        public Table ArmorTable { get { return TableByName("armorobject.db"); } }
-        public Table MagicTable { get { return TableByName("magicobject.db"); } }
-        public Table RecipeTable { get { return TableByName("recipeobject.db"); } }
-        public Table SpellTable { get { return TableByName("magiccollectobject.db"); } }
-        public Table ShopTable { get { return TableByName("shopobject.db"); } }
-        public Table SetsTable { get { return TableByName("suitobject.db"); } }
-        public Table CardTable { get { return TableByName("cardobject.db"); } }
-        public Table QuestTable { get { return TableByName("questdetailobject.db"); } }
-        public Table TitleTable { get { return TableByName("titleobject.db"); } }
-        public Table RuneTable { get { return TableByName("runeobject.db"); } }
-        public Table StatTable { get { return TableByName("addpowerobject.db"); } }
-        public Table ImageTable { get { return TableByName("imageobject.db"); } }
-        public Table ZoneTable { get { return TableByName("zoneobject.db"); } }
+        public Table TreasureTable => TableByName("treasureobject.db");
+        public Table NpcTable => TableByName("npcobject.db");
+        public Table QuestNpcTable => TableByName("questnpcobject.db");
+        public Table ItemTable => TableByName("itemobject.db");
+        public Table WeaponTable => TableByName("weaponobject.db");
+        public Table ArmorTable => TableByName("armorobject.db");
+        public Table LearnMagicTable => TableByName("learnmagic.db");
+        public Table MagicTable => TableByName("magicobject.db");
+        public Table RecipeTable => TableByName("recipeobject.db");
+        public Table SpellTable => TableByName("magiccollectobject.db");
+        public Table ShopTable => TableByName("shopobject.db");
+        public Table SetsTable => TableByName("suitobject.db");
+        public Table CardTable => TableByName("cardobject.db");
+        public Table QuestTable => TableByName("questdetailobject.db");
+        public Table TitleTable => TableByName("titleobject.db");
+        public Table RuneTable => TableByName("runeobject.db");
+        public Table StatTable => TableByName("addpowerobject.db");
+        public Table ImageTable => TableByName("imageobject.db");
+        public Table ZoneTable => TableByName("zoneobject.db");
 
         public IEnumerable<Tuple<StringsDataBase, IEnumerable<Tuple<string, string>>>> GetStringsByGuid(uint guid)
         {
@@ -57,7 +58,7 @@ namespace RunesDataBase
         }
         public IEnumerable<Tuple<string, string>> GetStringsByGuid(StringsDataBase language, uint guid)
         {
-            var pattern = string.Format("Sys{0}_", guid);
+            var pattern = $"Sys{guid}_";
             return language.WhereKeyMatches(s => s.StartsWith(pattern));
         }
         public IEnumerable<Tuple<string, string>> GetStringsByGuid(string language, uint guid)
@@ -77,31 +78,23 @@ namespace RunesDataBase
         public string GetStringByGuid(uint guid, StringLinkKind kind = StringLinkKind.General)
         {
             var pattern = kind.ToSysString(guid);
-            if (CurrentLanguage != null)
-            {
-                var value = CurrentLanguage[pattern];
-                if (value != null)
-                    return value;
-            }
+            var value = CurrentLanguage?[pattern];
+            if (value != null)
+                return value;
             return Languages.Select(language => language[pattern]).FirstOrDefault(val => val != null);
         }
 
         public BasicTableObject GetObjectByGuid(uint guid)
         {
             var targetDb = GetDbByGuid(guid);
-            if (targetDb != null)
-            {
-                var result = targetDb[guid];
-                if (result != null)
-                    return result;
-            }
+            var result = targetDb?[guid];
+            if (result != null)
+                return result;
             return Dbs.Select(db => db[guid]).FirstOrDefault(r => r != null);
         }
 
-        public BasicTableObject this[uint guid]
-        {
-            get { return GetObjectByGuid(guid); }
-        }
+        public BasicTableObject this[uint guid] => GetObjectByGuid(guid);
+
         public Table GetDbByGuid(uint guid)
         {
             var firstDigits = guid / 10000;
@@ -121,6 +114,7 @@ namespace RunesDataBase
                 case 53: return TitleTable;
                 case 55: return RecipeTable;
                 case 57: return ImageTable;
+                case 59: return LearnMagicTable;
                 case 61: return SetsTable;
                 case 72: return TreasureTable;
                 case 75: return ZoneTable;
@@ -136,7 +130,7 @@ namespace RunesDataBase
                 "treasureobject.db", "npcobject.db", "questnpcobject.db", "itemobject.db", "weaponobject.db",
                 "armorobject.db", "magicobject.db", "recipeobject.db", "magiccollectobject.db", "shopobject.db",
                 "suitobject.db", "cardobject.db", "questdetailobject.db", "titleobject.db", "runeobject.db",
-                "addpowerobject.db", "imageobject.db", "zoneobject.db"
+                "addpowerobject.db", "imageobject.db", "zoneobject.db", "learnmagic.db"
             })
                 LoadDb(dbName, fieldsDescs["data\\" + dbName]);
         }
@@ -147,7 +141,7 @@ namespace RunesDataBase
                 FieldNames = desc
             };
             var localFile = Path.Combine(RootDir, "data", name);
-            Log.WriteLine(string.Format("Trying to load {0} from {1} ...", name, localFile));
+            Log.WriteLine($"Trying to load {name} from {localFile} ...");
             if (File.Exists(localFile))
             {
                 db.LoadFromFile(localFile);
@@ -188,6 +182,9 @@ namespace RunesDataBase
                 case "magiccollectobject.db":
                     t.GuidPrefix = 49*10000;
                     break;
+                case "learnmagic.db":
+                    t.GuidPrefix = 59*10000;
+                    break;
                 case "suitobject.db":
                     t.GuidPrefix = 61*10000;
                     break;
@@ -214,7 +211,7 @@ namespace RunesDataBase
             var tempName = Path.GetFileName(fileName) ?? "temp";
 
             var localFile = Path.Combine(RootDir, "data", tempName);
-            Log.WriteLine(string.Format("Trying to load {0} from {1} ...", tempName, localFile));
+            Log.WriteLine($"Trying to load {tempName} from {localFile} ...");
             var l = new StringsDataBase();
             if (File.Exists(localFile))
             {
@@ -240,7 +237,7 @@ namespace RunesDataBase
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("Failed to extract {0} from FDB", name), "Error!",
+                MessageBox.Show($"Failed to extract {name} from FDB", "Error!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bw.Close();
                 File.Delete(nametarget);
@@ -260,7 +257,7 @@ namespace RunesDataBase
                 AddKeyToAllLanguages("DIR_ZONEID_" + (o.Guid - ZoneTable.GuidPrefix));
             else
             {
-                var sysname = string.Format("Sys{0}_name", o.Guid);
+                var sysname = $"Sys{o.Guid}_name";
                 AddKeyToAllLanguages(sysname);
                 o.Name = sysname;
             }
@@ -280,13 +277,10 @@ namespace RunesDataBase
         public string GetZoneNameByGuid(uint guid)
         {
             guid %= 1000;
-            var pattern = string.Format("DIR_ZONEID_{0:D3}", guid);
-            if (CurrentLanguage != null)
-            {
-                var value = CurrentLanguage[pattern];
-                if (value != null)
-                    return value;
-            }
+            var pattern = $"DIR_ZONEID_{guid:D3}";
+            var value = CurrentLanguage?[pattern];
+            if (value != null)
+                return value;
             return Languages.Select(language => language[pattern]).FirstOrDefault(val => val != null);
         }
 
@@ -295,6 +289,14 @@ namespace RunesDataBase
             var sysname = GetDbByGuid(guid) == ZoneTable ? 
                 GetZoneNameByGuid(guid) : 
                 GetStringByGuid(guid, StringLinkKind.Name);
+            return sysname ?? guid.ToString();
+        }
+
+        public string GetNameForGuidWithGuid(uint guid)
+        {
+            var sysname = GetDbByGuid(guid) == ZoneTable ?
+                GetZoneNameByGuid(guid) :
+                GetStringByGuid(guid, StringLinkKind.Name) + $"({guid})";
             return sysname ?? guid.ToString();
         }
     }

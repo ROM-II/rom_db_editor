@@ -12,10 +12,7 @@ namespace RunesDataBase.SubScript
 
         public override string DefaultLanguage
         {
-            get
-            {
-                return DataBase.CurrentLanguage == null ? null : DataBase.CurrentLanguage.FileName;
-            }
+            get { return DataBase.CurrentLanguage?.FileName; }
             set { DataBase.CurrentLanguage = DataBase.LanguageByName(value) ?? DataBase.Languages.FirstOrDefault(); }
         }
         public override string GetString(string key, string defaultValue = null)
@@ -81,16 +78,14 @@ namespace RunesDataBase.SubScript
         {
             get { return DataBase.Languages.SelectMany(l => l.Data); }
         }
+
         public override IEnumerable<KeyValuePair<string, string>> AllStrings
-        {
-            get { return DataBase.CurrentLanguage == null ? 
-                (IEnumerable<KeyValuePair<string, string>>)new SortedList<string, string>() : 
-                DataBase.CurrentLanguage.Data; }
-        }
-        public override IEnumerable<BasicTableObject> AllObjects
-        {
-            get { return DataBase.Dbs.SelectMany(db => db.Objects.Values); }
-        }
+            => DataBase.CurrentLanguage == null
+                ? (IEnumerable<KeyValuePair<string, string>>) new SortedList<string, string>()
+                : DataBase.CurrentLanguage.Data;
+
+        public override IEnumerable<BasicTableObject> AllObjects => DataBase.Dbs.SelectMany(db => db.Objects.Values);
+
         public override IEnumerable<NpcObject> NPCs
         {
             get {
@@ -100,14 +95,15 @@ namespace RunesDataBase.SubScript
                     yield return a;
             }
         }
-        public override IEnumerable<SpellObject> Spells
-        {
-            get { return DataBase.SpellTable.Objects.Values.Cast<SpellObject>(); }
-        }
-        public override IEnumerable<MagicObject> MagicEffects
-        {
-            get { return DataBase.MagicTable.Objects.Values.Cast<MagicObject>(); }
-        }
+        public override IEnumerable<SpellObject> Spells 
+            => DataBase.SpellTable.Objects.Values.Cast<SpellObject>();
+
+        public override IEnumerable<MagicObject> MagicEffects 
+            => DataBase.MagicTable.Objects.Values.Cast<MagicObject>();
+
+        public override IEnumerable<LearnMagicObject> LearnMagic 
+            => DataBase.LearnMagicTable.Objects.Values.Cast<LearnMagicObject>();
+
         public override IEnumerable<ItemObject> Items
         {
             get { return new[]
@@ -131,26 +127,11 @@ namespace RunesDataBase.SubScript
                     .SelectMany(o => o as EquipmentObject[] ?? o.ToArray());
             }
         }
-        public override IEnumerable<WeaponItemObject> Weapons
-        {
-            get { return DataBase.WeaponTable.Objects.Values.Cast<WeaponItemObject>(); }
-        }
-        public override IEnumerable<StatObject> Stats
-        {
-            get { return DataBase.StatTable.Objects.Values.Cast<StatObject>(); }
-        }
-        public override IEnumerable<TreasureObject> Treasures
-        {
-            get { return DataBase.TreasureTable.Objects.Values.Cast<TreasureObject>(); }
-        }
-        public override IEnumerable<ArmorItemObject> Armor
-        {
-            get { return DataBase.ArmorTable.Objects.Values.Cast<ArmorItemObject>(); }
-        }
-        public override IEnumerable<ShopObject> Shops
-        {
-            get { return DataBase.ShopTable.Objects.Values.Cast<ShopObject>(); }
-        }
+        public override IEnumerable<WeaponItemObject> Weapons => DataBase.WeaponTable.Objects.Values.Cast<WeaponItemObject>();
+        public override IEnumerable<StatObject> Stats => DataBase.StatTable.Objects.Values.Cast<StatObject>();
+        public override IEnumerable<TreasureObject> Treasures => DataBase.TreasureTable.Objects.Values.Cast<TreasureObject>();
+        public override IEnumerable<ArmorItemObject> Armor => DataBase.ArmorTable.Objects.Values.Cast<ArmorItemObject>();
+        public override IEnumerable<ShopObject> Shops => DataBase.ShopTable.Objects.Values.Cast<ShopObject>();
 
         public override void SetModified(string dataBaseName)
         {

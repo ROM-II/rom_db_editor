@@ -370,7 +370,7 @@ namespace RunesDataBase
             {
                 if (lang.WhereKeyMatches(s => s == f.Key).Any())
                 {
-                    var msg = string.Format("Key '{0}' is already defined in '{1}'; it will not be changed.", f.Key, lang.FullLanguageName);
+                    var msg = $"Key '{f.Key}' is already defined in '{lang.FullLanguageName}'; it will not be changed.";
                     MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     continue;
                 }
@@ -503,7 +503,7 @@ namespace RunesDataBase
                 {
                     o.Name = database.GetNameForGuid(o.Guid);
                 }
-                var objName = string.Format("[{0}]", o.Name)
+                var objName = $"[{o.Name}]"
                     .HtmlFont(o.GetColor())
                     .HtmlWrap("a", "href=" + o.Guid, "target=romdb");
                 sb.AppendLine(objName.HtmlWrap("td"));
@@ -567,7 +567,7 @@ public class Main {
                 var sb = new StringBuilder();
                 foreach (CompilerError error in results.Errors)
                 {
-                    var lineStr = string.Format("[line {0}]", error.Line - 8)
+                    var lineStr = $"[line {error.Line - 8}]"
                         .HtmlFont(error.IsWarning ? Color.DarkGoldenrod : Color.Red);
                     var errorStr = string.Format("{0} {3} {2}: {1}", lineStr, error.ErrorText, error.ErrorNumber,
                         error.IsWarning ? "Warning" : "Error");

@@ -28,6 +28,7 @@ namespace RunesDataBase.SubScript
         public abstract IEnumerable<NpcObject> NPCs { get; }
         public abstract IEnumerable<SpellObject> Spells { get; }
         public abstract IEnumerable<MagicObject> MagicEffects { get; }
+        public abstract IEnumerable<LearnMagicObject> LearnMagic { get; }
         public abstract IEnumerable<ItemObject> Items { get; }
         public abstract IEnumerable<EquipmentObject> Equipment { get; }
         public abstract IEnumerable<WeaponItemObject> Weapons { get; }

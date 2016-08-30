@@ -56,11 +56,9 @@ namespace RunesDataBase.TableObjects
     public class StatDrop : StructuredField
     {
         [Browsable(false)]
-        public bool IsEmpty
-        {
-            get { return StatID < 1 || Rate < 1; }
-        }
-        private int _id = 0;
+        public bool IsEmpty => StatID < 1 || Rate < 1;
+
+        private readonly int _id;
         public StatDrop(BasicTableObject o, int i) : base(o) { _id = i; }
         public uint StatID
         {
@@ -77,8 +75,7 @@ namespace RunesDataBase.TableObjects
             if (IsEmpty)
                 return base.ToString();
             var item = TableObject.OwnerTable.Db.GetNameForGuid(StatID) ?? StatID.ToString();
-            item = "[" + item + "]";
-            return string.Format("{0} - {1:P3}", item, Rate / 100000.0);
+            return $"[{item}] - {Rate/100000.0:P3}";
         }
     }
 }

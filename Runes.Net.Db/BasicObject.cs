@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Runes.Net.Shared;
-using Runes.Net.Shared.Html;
 
 namespace Runes.Net.Db
 {
     public class BasicObject : IByteArraySerialize, IDescribable
     {
         internal DbFile Owner { get; set; }
-        public string OwnerName { get { return Owner.FileName; }}
+        public string OwnerName 
+            => Owner.FileName;
         protected byte[] OriginalBytes { get; private set; }
         public uint Guid
         {
@@ -78,18 +78,14 @@ namespace Runes.Net.Db
             return OriginalBytes.GetInt32((int)field.Offset);
         }
 
-        public string Representation
-        {
-            get { return string.Join("<br>", FieldsProvider.Select(f => f.Name + "=" + GetFieldAsInt(f.Name))); }
-        }
-        public override string ToString()
-        {
-            return "?Basic Object?";
-        }
-        public string GetDescription()
-        {
-            return Representation;
-        }
+        public string Representation 
+            => string.Join("<br>", FieldsProvider.Select(f => f.Name + "=" + GetFieldAsInt(f.Name)));
+
+        public override string ToString() 
+            => "?Basic Object?";
+
+        public string GetDescription() 
+            => Representation;
 
         public void SetField(string name, uint value)
         {
@@ -205,6 +201,22 @@ namespace Runes.Net.Db
         public void RememberModified(bool modified = true)
         {
             Owner.ModifiedFlag = modified;
+        }
+        public BasicObject[] GetFieldAsArray(uint offset, int count, uint elementSize)
+        {
+            if (OriginalBytes.Length < offset + count*elementSize)
+                return null;
+            var output = new List<BasicObject>((int) count);
+
+            var fieldBytes = OriginalBytes.Skip((int)offset).Take((int) (elementSize*count)).ToArray();
+            for (var i = 0; i < count; ++i)
+            {
+                var obj = new BasicObject(FieldsProvider, Owner);
+                obj.FromBytes(fieldBytes.Take((int) elementSize).ToArray());
+                fieldBytes = fieldBytes.Skip((int) elementSize).ToArray();
+                output.Add(obj);
+            }
+            return output.ToArray();
         }
     }
 }
