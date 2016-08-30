@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -247,5 +248,25 @@ namespace RunesDataBase.TableObjects
             set { Object.SetField(0x006c, (uint)value); }
         }
 
+        public override string ToString()
+        {
+            var constraints = new List<string>();
+            if (PlayerClass != 0)
+                constraints.Add($"class={PlayerClass}");
+            if (Race != 0)
+                constraints.Add($"race={Race}");
+            if (Sex != 0)
+                constraints.Add($"sex={Sex}");
+            if (MinLevel != 0)
+                constraints.Add($"lvl>={MinLevel}");
+            if (STR != 0) constraints.Add($"str>={STR}");
+            if (AGI != 0) constraints.Add($"dex>={AGI}");
+            if (STA != 0) constraints.Add($"sta>={STA}");
+            if (INT != 0) constraints.Add($"int>={INT}");
+            if (MND != 0) constraints.Add($"wis>={MND}");
+            return constraints.Any() 
+                ? string.Join(", ", constraints)
+                : base.ToString();
+        }
     }
 }
