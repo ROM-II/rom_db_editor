@@ -43,8 +43,8 @@ namespace RunesDataBase.TableObjects
         public TreasureObject(BasicObject obj) : base(obj) { }
         public override string GetDescription()
         {
-            return string.Format("Treasure of {0} items. Contents:\r\n\t{1}", ItemCount,
-                string.Join(";\r\n\t", Items.Where(i => !i.IsEmpty)));
+            return
+                $"Treasure of {ItemCount} items. Contents:\r\n\t{string.Join(";\r\n\t", Items.Where(i => !i.IsEmpty))}";
         }
         public override Color GetColor()
         {
@@ -78,10 +78,8 @@ namespace RunesDataBase.TableObjects
         }
 
         [Browsable(false)]
-        public bool IsEmpty
-        {
-            get { return ItemGUID < 1 || Rate < 1 || Count < 1; }
-        }
+        public bool IsEmpty => ItemGUID < 1 || Rate < 1 || Count < 1;
+
         public override string ToString()
         {
             if (IsEmpty)
@@ -90,8 +88,8 @@ namespace RunesDataBase.TableObjects
             item = "[" + item + "]";
 
             return Count > 1 
-                ? string.Format("{0} x{1} - {2:P3}", item, Count, Rate/100000.0) 
-                : string.Format("{0} - {1:P3}", item, Rate / 100000.0);
+                ? $"{item} x{Count} - {Rate/100000.0:P3}"
+                : $"{item} - {Rate/100000.0:P3}";
         }
 
         public string ToHtmlString()
@@ -101,12 +99,12 @@ namespace RunesDataBase.TableObjects
             var db = TableObject.OwnerTable.Db;
             var item = db.GetNameForGuid(ItemGUID) ?? ItemGUID.ToString();
             var obj = db[ItemGUID];
-            var color = obj == null ? Color.White : obj.GetColor();
+            var color = obj?.GetColor() ?? Color.White;
             item = ("[" + item + "]").HtmlFont(color);
 
             return Count > 1
-                ? string.Format("{0} x{1} - {2:P3}", item, Count, Rate / 100000.0)
-                : string.Format("{0} - {1:P3}", item, Rate / 100000.0);
+                ? $"{item} x{Count} - {Rate/100000.0:P3}"
+                : $"{item} - {Rate/100000.0:P3}";
         }
     }
 }

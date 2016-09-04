@@ -34,6 +34,14 @@ namespace RunesDataBase.TableObjects
                 return a;
             }
         }
+
+        public string SpMagicFreeSlots
+            => string.Join(", ", Enumerable.Range(0, 200)
+                .Except(SpMagic
+                    .Where(x => !x.IsEmpty)
+                    .Select(x => (int) x.Slot)
+                    .Distinct())
+                );
         public LearnMagicElement[] NormalMagic
         {
             get
@@ -44,6 +52,14 @@ namespace RunesDataBase.TableObjects
                 return a;
             }
         }
+
+        public string NormalMagicFreeSlots
+            => string.Join(", ", Enumerable.Range(0, 200)
+                .Except(NormalMagic
+                    .Where(x => !x.IsEmpty)
+                    .Select(x => (int) x.Slot)
+                    .Distinct())
+                );
 
         public override string GetDescription()
             => $"[LearnMagic for {CharClass} (#{Guid})]";
@@ -94,10 +110,10 @@ namespace RunesDataBase.TableObjects
             get { return this[4]; }
             set { this[4] = value; }
         }
-        public uint ReqUnknown1
+        public uint Slot
         {
-            get { return this[5]; }
-            set { this[5] = value; }
+            get { return this[5]/0x10000; }
+            set { this[5] = value*0x10000; }
         }
 
         private string GetName(uint id)
@@ -114,10 +130,8 @@ namespace RunesDataBase.TableObjects
                 requirements.Add($"skill({GetName(ReqSkill)})");
             if (ReqUnknown0 > 0)
                 requirements.Add($"???[0]({GetName(ReqUnknown0)})");
-            if (ReqUnknown1 > 0)
-                requirements.Add($"???[1]({GetName(ReqUnknown1)})");
 
-            return $"[{item}]" + (requirements.Any() ? ", requires " + string.Join(", ", requirements) : "");
+            return $"[{item}] at {GetName(Slot)}" + (requirements.Any() ? ", requires " + string.Join(", ", requirements) : "");
         }
     }
 }
