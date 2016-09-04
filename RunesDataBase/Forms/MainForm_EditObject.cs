@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Runes.Net.Db;
 using RunesDataBase.TableObjects;
 
-namespace RunesDataBase
+namespace RunesDataBase.Forms
 {
     partial class MainForm
     {
-        public void NavigateToObjects(TableObjectEditLink link)
+        public static Dictionary<BasicTableObject, EditObjectForm> OpenedEditObjectWindows { get; }
+            = new Dictionary<BasicTableObject, EditObjectForm>();
+
+        public static void NavigateToObjects(TableObjectEditLink link)
         {
+            NavigateToObjects(link.Object);
+
+            /*
             SelectTab(uiTabEditObject);
             userChanges = false;
             uiEditObject_AddTitleString.Enabled = link.Object.Title == null;
@@ -16,12 +22,26 @@ namespace RunesDataBase
             uiObjectProps.SelectedObject = link.Object;
             if (!(SelectedObject is NpcObject))
                 uiEditObject_AddTitleString.Enabled = false;
-            userChanges = true;
+            userChanges = true;*/
+        }
+
+        public static void NavigateToObjects(BasicTableObject obj)
+        {
+            EditObjectForm form;
+            if (OpenedEditObjectWindows.TryGetValue(obj, out form))
+            {
+                form.Activate();
+                return;
+            }
+
+            form = new EditObjectForm(obj);
+            OpenedEditObjectWindows.Add(obj, form);
+            form.Show();
         }
 
         private void uiEditObject_CopyObject_Click(object sender, EventArgs e)
         {
-            var newObj = database.GenerateNewTableObject(SelectedObject);
+            var newObj = Database.GenerateNewTableObject(SelectedObject);
             if (newObj == null)
             {
                 MessageBox.Show("Failed to create new object!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -31,7 +51,9 @@ namespace RunesDataBase
             uiObjectProps.SelectedObject = newObj;
             userChanges = true;
         }
-        private BasicTableObject SelectedObject { get { return ((BasicTableObject)uiObjectProps.SelectedObject); } }
+        private BasicTableObject SelectedObject 
+            => uiObjectProps.SelectedObject as BasicTableObject;
+
         private void uiEditObject_AddTitleString_Click(object sender, EventArgs e)
         {
             if (AddNewString("Sys" + SelectedObject.Guid + "_titlename"))

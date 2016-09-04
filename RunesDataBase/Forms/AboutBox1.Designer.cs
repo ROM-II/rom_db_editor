@@ -1,4 +1,4 @@
-﻿namespace RunesDataBase
+﻿namespace RunesDataBase.Forms
 {
     partial class AboutBox1
     {

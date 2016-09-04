@@ -83,10 +83,10 @@ public class Main
         {
             // SCRIPT BEGIN
             const uint statGUID = 514335;
-            var list = db.Equipment.Where(item =>
-                item.CanHaveStat(statGUID)
-                ).ToList();
-            db.UI_ShowObjectList(list, o => ((TreasureObject)o).GetDescription());
+            var list = db.Equipment
+                .Where(item => item.CanHaveStat(statGUID))
+                .ToList();
+            db.UI_ShowObjectList(list, o => o.GetDescription());
             // SCRIPT END
         }
         /* Show all items with a specified stat (200927) */

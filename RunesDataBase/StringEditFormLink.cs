@@ -1,4 +1,5 @@
 ﻿using System;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase
 {
@@ -18,17 +19,17 @@ namespace RunesDataBase
         }
         public override string ToString()
         {
-            return string.Format("{0} = \"{1}\"", Key, Value);
+            return $"{Key} = \"{Value}\"";
         }
 
         public override string GetDescription()
         {
-            return string.Format("{0} string ({1})", Kind, Language);
+            return $"{Kind} string ({Language})";
         }
 
-        public override void Navigate(MainForm form)
+        public override void Navigate()
         {
-            form.NavigateToStrings(this);
+            MainForm.Instance.NavigateToStrings(this);
         }
     }
 

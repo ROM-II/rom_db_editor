@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Runes.Net.Db.String.db;
 
-namespace RunesDataBase
+namespace RunesDataBase.Forms
 {
     public partial class AddStringForm : Form
     {

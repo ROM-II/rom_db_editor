@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using RunesDataBase.Forms;
 using RunesDataBase.TableObjects;
 
 namespace RunesDataBase
@@ -19,7 +20,7 @@ namespace RunesDataBase
 
         public override string GetDescription()
         {
-            return string.Format("({0}) {1}", Object.Guid, Object.GetDescription());
+            return $"({Object.Guid}) {Object.GetDescription()}";
         }
 
         public override Color GetColor()
@@ -27,9 +28,9 @@ namespace RunesDataBase
             return Object.GetColor();
         }
 
-        public override void Navigate(MainForm form)
+        public override void Navigate()
         {
-            form.NavigateToObjects(this);
+            MainForm.NavigateToObjects(this);
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Runes.Net.Db.String.db;
 using Runes.Net.Fdb;
 
-namespace RunesDataBase
+namespace RunesDataBase.Forms
 {
     public partial class SelectLanguagesForm : Form
     {
