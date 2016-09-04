@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace RunesDataBase
+namespace RunesDataBase.Forms
 {
     public partial class MainForm
     {
@@ -37,13 +37,13 @@ namespace RunesDataBase
         }
         void uiButtonSaveStrings_Click(object sender, EventArgs e)
         {
-            var lang = database.LanguageByName(uiEditStrings_Language.Text);
+            var lang = Database.LanguageByName(uiEditStrings_Language.Text);
             lang[uiEditStrings_Key.Text] = uiEditStrings_Value.Text;
             uint guid;
             string sfx;
             if (!ExtractGuidFromKey(uiEditStrings_Key.Text, out guid, out sfx))
                 return;
-            var obj = database[guid];
+            var obj = Database[guid];
             if (obj == null)
                 return;
             switch (sfx)

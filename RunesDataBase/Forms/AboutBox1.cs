@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace RunesDataBase
+namespace RunesDataBase.Forms
 {
     partial class AboutBox1 : Form
     {

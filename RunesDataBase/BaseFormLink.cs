@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Runes.Net.Shared;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase
 {
@@ -8,6 +9,6 @@ namespace RunesDataBase
         public abstract override string ToString();
         public virtual Color GetColor() { return Color.White; } 
         public abstract string GetDescription();
-        public abstract void Navigate(MainForm form);
+        public abstract void Navigate();
     }
 }
