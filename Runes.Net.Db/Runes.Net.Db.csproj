@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicObject.cs" />
+    <Compile Include="CommonFields.cs" />
     <Compile Include="DataFieldsProvider.cs" />
     <Compile Include="DbFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

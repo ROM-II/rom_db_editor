@@ -3,6 +3,41 @@ using System.ComponentModel;
 
 namespace Runes.Net.Shared
 {
+
+    public enum GameObjectClassification
+    {
+        None = -1,
+        Player = 0,
+        NPC,     // 1	
+        Item,        //Є««~	ёЛіЖ ЄZѕ№ Єчїъ 2
+        MagicBase,       // 3 
+        BodyObj,     // 4 
+        Attribute,       //ґ_Ґ[ДЭ©К	
+        QuestCollect,
+        QuestDetail,
+        Title,       //АY»О
+        KeyItem,     //­«­nЄ««~
+        Recipe,      //°t¤иЄн
+        Mine,        //ДqІЈ
+        Flag,        //єX¤lёк®Ж
+        Image,       //№П¶Hёк®Ж
+        QuestNPC,        //Ґф°И
+        LearnMagic,      //ЄkіNѕЗІЯ
+        Shop,        //°У©±
+        Suit,        //®MёЛ
+        LuaScript,       //ј@±Ў
+        Camp,        //°}Аз
+        Treasure,        //Д_Ѕc
+        MagicCollect,        //ЄkіN¶°¦X
+        EqRefineAbility,     //ёЛіЖєл·ТЄн
+        Zone,        //°П°м
+        CreateRole,      //«ШЁ¤Є«Ґу
+        PE,      //PEјЛЄO
+        Phantom,     //¤ЫЖF
+
+        Max
+    }
+
     public enum Relation
     {
         Self, //¦Ы¤v

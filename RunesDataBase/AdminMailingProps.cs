@@ -22,29 +22,43 @@ namespace RunesDataBase
         [Category("1. Mail properties")]
         public string Title { get; set; } = "Sample text";
         [Category("1. Mail properties")]
-        public string Message { get; set; } = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+        public string Message { get; set; }
         [Category("2. Money contents")]
         public int Gold { get; set; }
         [Category("2. Money contents")]
         public int Dias { get; set; }
         [Category("2. Money contents")]
         public int Rubies { get; set; }
-        [Category("3. Item contents"), TypeConverter(typeof(EntitySelectConverter<ItemObject>))] 
+
+        [Category("3. Item contents")] 
       //[Editor(typeof(AutocompleteEditor<BasicTableObject>), typeof(UITypeEditor))]
         public ItemObject Item { get; set; } = null;
-        [Category("3. Item contents")]
+
+        [Category("3. Item contents"), DisplayName("Items count"), Description("X > 1 will not actually work as intended for equipment and things with max count == 1")]
         public int ItemCount { get; set; } = 0;
-        [Category("3. Item contents"), Range(0, 255)]
-        public byte ItemDura { get; set; } = 100;
-        [Category("3. Item contents"), Range(0, 31)]
+
+        [Category("3. Item contents"), Range(0, 255), 
+            DisplayName("Item durability"), Description("Range[0..255]")]
+        public byte ItemDura { get; set; } = 0;
+
+        [Category("3. Item contents"), Range(0, 31), 
+            DisplayName("Item tier mod"), Description("Range[0..31] Not actualy tier but some modifier for it. 28-31 is often tier 20+")]
         public byte ItemTierModifier { get; set; } = 0;
-        [Category("3. Item contents"), Range(0, 31)]
+
+        [Category("3. Item contents"), Range(0, 20), 
+            DisplayName("Item enchanting"), Description("Range[0..20]. Item enchanting ( ITEMNAME +X )")]
         public byte ItemEnchanting { get; set; } = 0;
-        [Category("3. Item contents"), Range(0, 7)]
+
+        [Category("3. Item contents"), Range(0, 4),
+            DisplayName("Item rune slots"), Description("Range[0..4]. Item rune slots")]
         public byte ItemRuneSlots { get; set; } = 0;
-        [Category("3. Item contents")]
+
+        [Category("3. Item contents"),
+            DisplayName("Item stats"), Description("Repeating stats ARE allowed!")]
         public StatObject[] ItemStats { get; } = new StatObject[6];
-        //public RuneObject[] ItemRunes { get; } = new RuneObject[4];
+        [Category("3. Item contents"),
+            DisplayName("Item runes"), Description("Repeating stats ARE allowed!")]
+        public RuneObject[] ItemRunes { get; } = new RuneObject[4];
 
         public bool Send()
         {
@@ -72,7 +86,7 @@ namespace RunesDataBase
                         {"dias", Dias },
                         {"rubies", Rubies },
                         {"sender", Sender },
-                        {"ability", BuildAbility(ItemStats/*, Runes*/) },
+                        {"ability", BuildAbility(ItemStats, ItemRunes) },
                         {"exValue", BuildExValue(ItemDura, ItemEnchanting, ItemTierModifier, ItemRuneSlots) },
                     });
             }
@@ -80,17 +94,14 @@ namespace RunesDataBase
             {
                 MainForm.Instance.Log.WriteLine($"Exception on {nameof(Send)} - {ex}");
                 MessageBox.Show($"Failed to send mail\r\n{ex}", "Error");
-#if DEBUG
-                throw;
-#endif
                 return false;
             }
             return true;
         }
 
-        private int BuildExValue(byte dura, byte enchantment, byte tier, byte runeSlots)
+        private static int BuildExValue(byte dura, byte enchantment, byte tier, byte runeSlots)
             => BuildExValue(0, dura, tier, 0, enchantment, runeSlots);
-        private int BuildExValue(byte orgQuality, byte quality, byte powerQuality, byte rare, byte level, byte runeVolume)
+        private static int BuildExValue(byte orgQuality, byte quality, byte powerQuality, byte rare, byte level, byte runeVolume)
         {
             int value = orgQuality;
             value |= quality << 8;
@@ -101,7 +112,7 @@ namespace RunesDataBase
             return value;
         }
 
-        private byte[] BuildAbility(StatObject[] itemStats)
+        private static byte[] BuildAbility(StatObject[] itemStats, RuneObject[] runes)
         {
             var b = new List<byte>();
             AbilifyItems(itemStats.Select(x =>
@@ -109,7 +120,11 @@ namespace RunesDataBase
                 var guid = x?.Guid ?? 0;
                 return guid > 999999 ? 0 : guid;
             }).ToArray(), b);
-            AbilifyItems(Enumerable.Repeat((uint)0, 4), b);//runes
+            AbilifyItems(runes.Select(x =>
+            {
+                var guid = x?.Guid ?? 0;
+                return guid > 999999 ? 0 : guid;
+            }).ToArray(), b);//runes
             b.AddRange(Enumerable.Repeat((byte)0, 12));
             return b.ToArray();
         }

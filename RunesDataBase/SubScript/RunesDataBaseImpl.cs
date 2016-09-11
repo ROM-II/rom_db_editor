@@ -106,15 +106,21 @@ namespace RunesDataBase.SubScript
 
         public override IEnumerable<ItemObject> Items
         {
-            get { return new[]
+            get
             {
-                DataBase.ItemTable.Objects.Values.Cast<ItemObject>(), 
-                DataBase.CardTable.Objects.Values.Cast<ItemObject>(), 
-                DataBase.RuneTable.Objects.Values.Cast<ItemObject>(), 
-                Equipment
+                return new[]
+                {
+                    DataBase.ItemTable.Objects.Values.Cast<ItemObject>(),
+                    DataBase.CardTable.Objects.Values.Cast<ItemObject>(),
+                    Runes,
+                    Equipment
+                }.SelectMany(o => o as ItemObject[] ?? o.ToArray());
             }
-                .SelectMany(o => o as ItemObject[] ?? o.ToArray()); }
         }
+
+        public override IEnumerable<RuneObject> Runes
+            => DataBase.RuneTable.Objects.Values.Cast<RuneObject>();
+
         public override IEnumerable<EquipmentObject> Equipment
         {
             get

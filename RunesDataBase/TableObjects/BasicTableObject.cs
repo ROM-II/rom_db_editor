@@ -15,14 +15,17 @@ namespace RunesDataBase.TableObjects
                 throw new NullReferenceException();
             DbObject = obj;
             NameInternal = new Outdatable<string>(DataBase.NameDataVersioned, () 
-                => MainForm.Database.GetNameForGuidWithGuid2(Guid));
+                => MainForm.Database.GetNameForGuid(Guid));
         }
         [Browsable(false)]
         public BasicObject DbObject { get; protected set; }
-        [ReadOnly(true)]
-        [Category("System")]
-        [DisplayName("GUID")]
+
+        [ReadOnly(true), Category("System"), DisplayName("GUID")]
         public uint Guid => DbObject.Guid;
+
+        [ReadOnly(true), Category("System"), DisplayName("Classification")]
+        public GameObjectClassification ObjectClass 
+            => (GameObjectClassification) DbObject.GetFieldAsInt(0x0004);
 
         [Browsable(false)]
         internal Outdatable<string> NameInternal { get; }
@@ -31,9 +34,11 @@ namespace RunesDataBase.TableObjects
         [Category("System")]
         public string Name 
             => NameInternal.Value;
+
         [ReadOnly(true)]
         [Category("System")]
         public string ShortNote { get; internal set; }
+
         [ReadOnly(true)]
         [Category("System")]
         public string Title { get; internal set; }
@@ -45,7 +50,10 @@ namespace RunesDataBase.TableObjects
         {
             if (DbObject == null)
                 return "NULL";
-            return Name ?? (Guid == 0 ? "??? " : "") + $"[{Guid}]";
+            var sGuid = $"[{Guid}]";
+            if (Name == Guid.ToString())
+                return sGuid;
+            return (Name ?? "") + sGuid;
         }
 
         public virtual Color GetColor() 
@@ -92,7 +100,7 @@ namespace RunesDataBase.TableObjects
                 case "titleobject.db":
                     break;
                 case "runeobject.db":
-                    return new ItemObject(obj);
+                    return new RuneObject(obj);
                 case "addpowerobject.db":
                     return new StatObject(obj);
                 case "zoneobject.db":

@@ -439,11 +439,9 @@ namespace RunesDataBase.Forms
                 var id = int.Parse(searchResult.Name);
                 var item = _searchResults[id];
                 var link = item as TableObjectEditLink;
-                if (link != null)
-                {
-                    var obj = link.Object;
-                    searchResult.Text = obj.ToString();
-                }
+                if (link == null) continue;
+                var obj = link.Object;
+                searchResult.Text = obj.ToString();
             }
         }
         private Config _cfg = new Config();

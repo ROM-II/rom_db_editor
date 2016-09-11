@@ -218,5 +218,8 @@ namespace Runes.Net.Db
             }
             return output.ToArray();
         }
+
+        public uint GetFieldAsUInt(CommonFields commonFields) 
+            => GetFieldAsUInt((uint)commonFields);
     }
 }

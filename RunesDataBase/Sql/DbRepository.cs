@@ -77,6 +77,10 @@ namespace RunesDataBase.Sql
             EntitySelectConverter<StatObject>.SetStringConverter(GuidExtractor.Instance);
             EntitySelectConverter<StatObject>.StandardValues =
                 () => MainForm.Database?.Cache.Stats.Value;
+
+            EntitySelectConverter<RuneObject>.SetStringConverter(GuidExtractor.Instance);
+            EntitySelectConverter<RuneObject>.StandardValues =
+                () => MainForm.Database?.Cache.Runes.Value;
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Linq;
 using Runes.Net.Db;
 using Runes.Net.Shared;
-using RunesDataBase.Forms;
 
 namespace RunesDataBase.TableObjects
 {
@@ -13,12 +12,20 @@ namespace RunesDataBase.TableObjects
     public class ItemObject : BasicVisualTableObject
     {
         public ItemObject(BasicObject obj) : base(obj) { }
+        
 
-        [DisplayName("Class")] [Category("Item Properties - Basic")] [ReadOnly(true)]
-        public ItemClass Class
+        [DisplayName("Item Class"), Category("Item Properties - Basic"), ReadOnly(true)]
+        public ItemClass ItemClass
         {
-            get { return (ItemClass) DbObject.GetFieldAsUInt(0x0004); }
-            set { DbObject.SetField(0x0004, (uint)value); }
+            get { return (ItemClass) DbObject.GetFieldAsUInt((uint)CommonFields.ItemClass); }
+            set { DbObject.SetField((uint)CommonFields.ItemClass, (uint)value); }
+        }
+
+        [DisplayName("Item Type"), Category("Item Properties - Basic"), ReadOnly(true)]
+        public ItemType ItemType
+        {
+            get { return (ItemType)DbObject.GetFieldAsUInt((uint)CommonFields.ItemType); }
+            set { DbObject.SetField((uint)CommonFields.ItemType, (uint)value); }
         }
 
         [DisplayName("Max Heap")] [Category("Item Properties - Basic")]
@@ -31,8 +38,8 @@ namespace RunesDataBase.TableObjects
         [Category("Item Properties - Basic")]
         public RareType Rarity
         {
-            get { return (RareType)DbObject.GetFieldAsUInt("rare"); }
-            set { DbObject.SetField("rare", (uint)value); }
+            get { return (RareType)DbObject.GetFieldAsUInt((uint)CommonFields.ItemRarity); }
+            set { DbObject.SetField((uint)CommonFields.ItemRarity, (uint)value); }
         }
 
         [Category("Item Properties - Basic")]
@@ -165,7 +172,7 @@ namespace RunesDataBase.TableObjects
 
         public override string GetDescription()
         {
-            return Class.ToString();
+            return ItemClass.ToString();
         }
         public override Color GetColor()
         {

@@ -155,6 +155,7 @@
     <Compile Include="TableObjects\LearnMagicObject.cs" />
     <Compile Include="TableObjects\MagicObject.cs" />
     <Compile Include="TableObjects\NpcObject.cs" />
+    <Compile Include="TableObjects\RuneObject.cs" />
     <Compile Include="TableObjects\ShopObject.cs" />
     <Compile Include="TableObjects\SpellObject.cs" />
     <Compile Include="TableObjects\ItemObject.cs" />

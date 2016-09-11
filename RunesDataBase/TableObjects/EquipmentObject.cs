@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Linq;
 using Runes.Net.Db;
 
 namespace RunesDataBase.TableObjects

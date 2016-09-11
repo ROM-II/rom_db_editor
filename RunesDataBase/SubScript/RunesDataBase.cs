@@ -31,6 +31,7 @@ namespace RunesDataBase.SubScript
         public abstract IEnumerable<MagicObject> MagicEffects { get; }
         public abstract IEnumerable<LearnMagicObject> LearnMagic { get; }
         public abstract IEnumerable<ItemObject> Items { get; }
+        public abstract IEnumerable<RuneObject> Runes { get; }
         public abstract IEnumerable<EquipmentObject> Equipment { get; }
         public abstract IEnumerable<WeaponItemObject> Weapons { get; }
         public abstract IEnumerable<StatObject> Stats { get; }
