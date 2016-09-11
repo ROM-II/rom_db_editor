@@ -2,6 +2,7 @@
 using System.Linq;
 using Runes.Net.Db;
 using Runes.Net.Shared;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase.TableObjects
 {
@@ -68,5 +69,8 @@ namespace RunesDataBase.TableObjects
                 return DefenceMag + (field?.Value ?? 0);
             }
         }
+
+        public override string ToString()
+            => base.ToString() + $" [P: {ActualDefencePhys:F0}; M: {ActualDefenceMag:F0}]";
     }
 }

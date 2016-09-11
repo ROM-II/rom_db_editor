@@ -1,41 +1,37 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
+using IniParser;
+using IniParser.Model;
 
 namespace RunesDataBase
 {
-    /// <summary>
-    /// Create a New INI file to store or load data
-    /// </summary>
     public class IniFile
     {
         public string Path { get; private set; }
-
-        [DllImport("kernel32.dll")]
-        private static extern long WritePrivateProfileString(string section,
-            string key, string val, string filePath);
-        [DllImport("kernel32.dll")]
-        private static extern int GetPrivateProfileString(string section,
-            string key, string def, StringBuilder retVal,
-            int size, string filePath);
-
+        private FileIniDataParser Parser { get; } 
+        private IniData Data { get; }
         public IniFile(string path)
         {
+            Parser = new FileIniDataParser();
             Path = path;
+            Parser.Parser.Configuration.AllowDuplicateKeys = true;
+            Data = Parser.ReadFile(path); // todo: make (Re)Load method for this
         }
 
         public string this[string section, string key]
         {
-            get
-            {
-                var temp = new StringBuilder(255);
-                GetPrivateProfileString(section, key, "", temp,
-                    255, Path);
-                return temp.ToString();
-            }
-            set
-            {
-                WritePrivateProfileString(section, key, value, Path);
-            }
+            get { return Data[section][key]; }
+            set { Data[section][key] = value; }
+        }
+        public string this[string key]
+        {
+            get { return Data.Global[key]; }
+            set { Data.Global[key] = value; }
+        }
+
+        public void Save()
+        {
+            Parser.WriteFile(Path, Data);
         }
     }
 }

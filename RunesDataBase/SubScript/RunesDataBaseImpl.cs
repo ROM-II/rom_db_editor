@@ -76,10 +76,8 @@ namespace RunesDataBase.SubScript
         {
             return DataBase.GetObjectByGuid(guid);
         }
-        public override IEnumerable<KeyValuePair<string, string>> CurrentLanguageStrings
-        {
-            get { return DataBase.Languages.SelectMany(l => l.Data); }
-        }
+        public override IEnumerable<KeyValuePair<string, string>> CurrentLanguageStrings 
+            => DataBase.Languages.SelectMany(l => l.Data);
 
         public override IEnumerable<KeyValuePair<string, string>> AllStrings
             => DataBase.CurrentLanguage == null

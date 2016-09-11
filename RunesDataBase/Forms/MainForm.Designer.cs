@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Strings", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("NPC", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Spells", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Zones", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("?", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Items", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Buffs", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Stats", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Drop lists (Treasure)", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Strings", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("NPC", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Spells", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Zones", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("?", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Items", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Buffs", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Stats", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Drop lists (Treasure)", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Fireball.Windows.Forms.LineMarginRender lineMarginRender2 = new Fireball.Windows.Forms.LineMarginRender();
+            Fireball.Windows.Forms.LineMarginRender lineMarginRender1 = new Fireball.Windows.Forms.LineMarginRender();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,12 +47,17 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newStringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.uiStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiTabs = new System.Windows.Forms.TabControl();
             this.uiTabSettings = new System.Windows.Forms.TabPage();
+            this.uiBrowseGlobalIni = new System.Windows.Forms.Button();
+            this.uiCfgPathGlobalIni = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.uiCfgSaveButton = new System.Windows.Forms.Button();
             this.uiBrowseDataDb = new System.Windows.Forms.Button();
             this.uiCfgDataDb = new System.Windows.Forms.TextBox();
@@ -73,7 +78,8 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.uiAdvSearchResults = new TheArtOfDev.HtmlRenderer.WinForms.HtmlPanel();
             this.uiScript = new Fireball.Windows.Forms.CodeEditorControl();
-            this.uiButtonRun = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.uiRunButton = new System.Windows.Forms.ToolStripButton();
             this.uiTabEditStrings = new System.Windows.Forms.TabPage();
             this.uiButtonSaveStrings = new System.Windows.Forms.Button();
             this.uiEditStrings_Value = new System.Windows.Forms.RichTextBox();
@@ -87,11 +93,13 @@
             this.uiEditObject_AddTitleString = new System.Windows.Forms.Button();
             this.uiEditObject_CopyObject = new System.Windows.Forms.Button();
             this.uiObjectProps = new System.Windows.Forms.PropertyGrid();
+            this.uiCommonIcons = new System.Windows.Forms.ImageList(this.components);
             this.uiOpenFDB = new System.Windows.Forms.OpenFileDialog();
             this.uiSaveDialog = new System.Windows.Forms.SaveFileDialog();
             this.uiBrowseFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.htmlToolTip1 = new TheArtOfDev.HtmlRenderer.WinForms.HtmlToolTip();
             this.syntaxDocument1 = new Fireball.Syntax.SyntaxDocument(this.components);
+            this.uiOpenGlobalIni = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.uiTabs.SuspendLayout();
@@ -102,6 +110,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.uiTabEditStrings.SuspendLayout();
             this.uiTabEditObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -116,11 +125,12 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.addToolStripMenuItem,
+            this.utilitiesToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(979, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(979, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -131,30 +141,33 @@
             this.saveAllToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openFDBToolStripMenuItem
             // 
+            this.openFDBToolStripMenuItem.Image = global::RunesDataBase.Properties.Resources.database_go;
             this.openFDBToolStripMenuItem.Name = "openFDBToolStripMenuItem";
             this.openFDBToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openFDBToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.openFDBToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.openFDBToolStripMenuItem.Text = "Open FDB ...";
             this.openFDBToolStripMenuItem.Click += new System.EventHandler(this.openFDBToolStripMenuItem_Click);
             // 
             // saveAllToolStripMenuItem
             // 
             this.saveAllToolStripMenuItem.Enabled = false;
+            this.saveAllToolStripMenuItem.Image = global::RunesDataBase.Properties.Resources.database_save;
             this.saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
             this.saveAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.saveAllToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.saveAllToolStripMenuItem.Text = "Save All";
             this.saveAllToolStripMenuItem.Click += new System.EventHandler(this.saveAllToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Image = global::RunesDataBase.Properties.Resources.cross;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -163,30 +176,47 @@
             this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newStringToolStripMenuItem});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.addToolStripMenuItem.Text = "Add";
             // 
             // newStringToolStripMenuItem
             // 
             this.newStringToolStripMenuItem.Enabled = false;
+            this.newStringToolStripMenuItem.Image = global::RunesDataBase.Properties.Resources.textfield_add;
             this.newStringToolStripMenuItem.Name = "newStringToolStripMenuItem";
-            this.newStringToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.newStringToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.newStringToolStripMenuItem.Text = "New String ...";
             this.newStringToolStripMenuItem.Click += new System.EventHandler(this.newStringToolStripMenuItem_Click);
+            // 
+            // utilitiesToolStripMenuItem
+            // 
+            this.utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adminPanelToolStripMenuItem});
+            this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
+            this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.utilitiesToolStripMenuItem.Text = "Utilities";
+            // 
+            // adminPanelToolStripMenuItem
+            // 
+            this.adminPanelToolStripMenuItem.Name = "adminPanelToolStripMenuItem";
+            this.adminPanelToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.adminPanelToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.adminPanelToolStripMenuItem.Text = "Admin panel ...";
+            this.adminPanelToolStripMenuItem.Click += new System.EventHandler(this.adminPanelToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.aboutToolStripMenuItem.Text = "About ...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip1
@@ -194,17 +224,17 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 643);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(979, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(979, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // uiStatusLabel
             // 
             this.uiStatusLabel.Name = "uiStatusLabel";
-            this.uiStatusLabel.Size = new System.Drawing.Size(34, 20);
+            this.uiStatusLabel.Size = new System.Drawing.Size(26, 17);
             this.uiStatusLabel.Text = "Idle";
             // 
             // uiTabs
@@ -217,6 +247,7 @@
             this.uiTabs.Controls.Add(this.uiTabAdvancedSearch);
             this.uiTabs.Controls.Add(this.uiTabEditStrings);
             this.uiTabs.Controls.Add(this.uiTabEditObject);
+            this.uiTabs.ImageList = this.uiCommonIcons;
             this.uiTabs.Location = new System.Drawing.Point(14, 31);
             this.uiTabs.Name = "uiTabs";
             this.uiTabs.SelectedIndex = 0;
@@ -226,6 +257,9 @@
             // uiTabSettings
             // 
             this.uiTabSettings.BackColor = System.Drawing.Color.Silver;
+            this.uiTabSettings.Controls.Add(this.uiBrowseGlobalIni);
+            this.uiTabSettings.Controls.Add(this.uiCfgPathGlobalIni);
+            this.uiTabSettings.Controls.Add(this.label6);
             this.uiTabSettings.Controls.Add(this.uiCfgSaveButton);
             this.uiTabSettings.Controls.Add(this.uiBrowseDataDb);
             this.uiTabSettings.Controls.Add(this.uiCfgDataDb);
@@ -233,19 +267,56 @@
             this.uiTabSettings.Controls.Add(this.uiBrowseDataFdb);
             this.uiTabSettings.Controls.Add(this.uiCfgDataFdb);
             this.uiTabSettings.Controls.Add(this.label4);
-            this.uiTabSettings.Location = new System.Drawing.Point(4, 27);
+            this.uiTabSettings.ImageKey = "cog.png";
+            this.uiTabSettings.Location = new System.Drawing.Point(4, 23);
             this.uiTabSettings.Name = "uiTabSettings";
             this.uiTabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.uiTabSettings.Size = new System.Drawing.Size(944, 572);
+            this.uiTabSettings.Size = new System.Drawing.Size(944, 576);
             this.uiTabSettings.TabIndex = 3;
             this.uiTabSettings.Text = "Settings";
+            // 
+            // uiBrowseGlobalIni
+            // 
+            this.uiBrowseGlobalIni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBrowseGlobalIni.Location = new System.Drawing.Point(881, 104);
+            this.uiBrowseGlobalIni.Name = "uiBrowseGlobalIni";
+            this.uiBrowseGlobalIni.Size = new System.Drawing.Size(57, 22);
+            this.uiBrowseGlobalIni.TabIndex = 9;
+            this.uiBrowseGlobalIni.Text = "...";
+            this.uiBrowseGlobalIni.UseVisualStyleBackColor = true;
+            this.uiBrowseGlobalIni.Click += new System.EventHandler(this.uiBrowseGlobalIni_Click);
+            // 
+            // uiCfgPathGlobalIni
+            // 
+            this.uiCfgPathGlobalIni.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiCfgPathGlobalIni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uiCfgPathGlobalIni.Font = new System.Drawing.Font("Consolas", 9F);
+            this.uiCfgPathGlobalIni.Location = new System.Drawing.Point(6, 104);
+            this.uiCfgPathGlobalIni.Name = "uiCfgPathGlobalIni";
+            this.uiCfgPathGlobalIni.Size = new System.Drawing.Size(869, 22);
+            this.uiCfgPathGlobalIni.TabIndex = 8;
+            this.uiCfgPathGlobalIni.Text = "C:\\Runewaker\\Server\\Realm_01_Common\\Global.ini";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 87);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(119, 14);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Path to Global.ini:";
             // 
             // uiCfgSaveButton
             // 
             this.uiCfgSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiCfgSaveButton.Location = new System.Drawing.Point(702, 106);
+            this.uiCfgSaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uiCfgSaveButton.ForeColor = System.Drawing.Color.Green;
+            this.uiCfgSaveButton.Image = global::RunesDataBase.Properties.Resources.diskette;
+            this.uiCfgSaveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiCfgSaveButton.Location = new System.Drawing.Point(850, 132);
             this.uiCfgSaveButton.Name = "uiCfgSaveButton";
-            this.uiCfgSaveButton.Size = new System.Drawing.Size(236, 26);
+            this.uiCfgSaveButton.Size = new System.Drawing.Size(88, 26);
             this.uiCfgSaveButton.TabIndex = 6;
             this.uiCfgSaveButton.Text = "Save";
             this.uiCfgSaveButton.UseVisualStyleBackColor = true;
@@ -254,9 +325,9 @@
             // uiBrowseDataDb
             // 
             this.uiBrowseDataDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBrowseDataDb.Location = new System.Drawing.Point(881, 74);
+            this.uiBrowseDataDb.Location = new System.Drawing.Point(881, 62);
             this.uiBrowseDataDb.Name = "uiBrowseDataDb";
-            this.uiBrowseDataDb.Size = new System.Drawing.Size(57, 26);
+            this.uiBrowseDataDb.Size = new System.Drawing.Size(57, 22);
             this.uiBrowseDataDb.TabIndex = 5;
             this.uiBrowseDataDb.Text = "...";
             this.uiBrowseDataDb.UseVisualStyleBackColor = true;
@@ -266,27 +337,29 @@
             // 
             this.uiCfgDataDb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiCfgDataDb.Location = new System.Drawing.Point(6, 74);
+            this.uiCfgDataDb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uiCfgDataDb.Font = new System.Drawing.Font("Consolas", 9F);
+            this.uiCfgDataDb.Location = new System.Drawing.Point(6, 62);
             this.uiCfgDataDb.Name = "uiCfgDataDb";
-            this.uiCfgDataDb.Size = new System.Drawing.Size(869, 26);
+            this.uiCfgDataDb.Size = new System.Drawing.Size(869, 22);
             this.uiCfgDataDb.TabIndex = 4;
             this.uiCfgDataDb.Text = "c:\\runewaker\\client\\data\\";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 53);
+            this.label5.Location = new System.Drawing.Point(6, 45);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(168, 18);
+            this.label5.Size = new System.Drawing.Size(142, 14);
             this.label5.TabIndex = 3;
             this.label5.Text = "Default *.db location:";
             // 
             // uiBrowseDataFdb
             // 
             this.uiBrowseDataFdb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBrowseDataFdb.Location = new System.Drawing.Point(881, 24);
+            this.uiBrowseDataFdb.Location = new System.Drawing.Point(881, 20);
             this.uiBrowseDataFdb.Name = "uiBrowseDataFdb";
-            this.uiBrowseDataFdb.Size = new System.Drawing.Size(57, 26);
+            this.uiBrowseDataFdb.Size = new System.Drawing.Size(57, 22);
             this.uiBrowseDataFdb.TabIndex = 2;
             this.uiBrowseDataFdb.Text = "...";
             this.uiBrowseDataFdb.UseVisualStyleBackColor = true;
@@ -296,9 +369,11 @@
             // 
             this.uiCfgDataFdb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiCfgDataFdb.Location = new System.Drawing.Point(6, 24);
+            this.uiCfgDataFdb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uiCfgDataFdb.Font = new System.Drawing.Font("Consolas", 9F);
+            this.uiCfgDataFdb.Location = new System.Drawing.Point(6, 20);
             this.uiCfgDataFdb.Name = "uiCfgDataFdb";
-            this.uiCfgDataFdb.Size = new System.Drawing.Size(869, 26);
+            this.uiCfgDataFdb.Size = new System.Drawing.Size(869, 22);
             this.uiCfgDataFdb.TabIndex = 1;
             this.uiCfgDataFdb.Text = "c:\\runewaker\\client\\fdb\\";
             // 
@@ -307,7 +382,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(196, 18);
+            this.label4.Size = new System.Drawing.Size(167, 14);
             this.label4.TabIndex = 0;
             this.label4.Text = "Default data.fdb location:";
             // 
@@ -321,10 +396,11 @@
             this.uiTabSearch.Controls.Add(this.uiButtonDoSearch);
             this.uiTabSearch.Controls.Add(this.uiSearchTextBox);
             this.uiTabSearch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.uiTabSearch.Location = new System.Drawing.Point(4, 27);
+            this.uiTabSearch.ImageKey = "magnifier.png";
+            this.uiTabSearch.Location = new System.Drawing.Point(4, 23);
             this.uiTabSearch.Name = "uiTabSearch";
             this.uiTabSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.uiTabSearch.Size = new System.Drawing.Size(944, 572);
+            this.uiTabSearch.Size = new System.Drawing.Size(944, 576);
             this.uiTabSearch.TabIndex = 0;
             this.uiTabSearch.Text = "Search";
             // 
@@ -334,7 +410,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(485, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 18);
+            this.label3.Size = new System.Drawing.Size(103, 14);
             this.label3.TabIndex = 6;
             this.label3.Text = "Default language:";
             // 
@@ -344,7 +420,7 @@
             this.uiCurrentLangugae.FormattingEnabled = true;
             this.uiCurrentLangugae.Location = new System.Drawing.Point(613, 36);
             this.uiCurrentLangugae.Name = "uiCurrentLangugae";
-            this.uiCurrentLangugae.Size = new System.Drawing.Size(323, 26);
+            this.uiCurrentLangugae.Size = new System.Drawing.Size(323, 22);
             this.uiCurrentLangugae.TabIndex = 5;
             this.htmlToolTip1.SetToolTip(this.uiCurrentLangugae, "Default localization to use for naming objects");
             this.uiCurrentLangugae.SelectedIndexChanged += new System.EventHandler(this.uiCurrentLangugae_SelectedIndexChanged);
@@ -356,7 +432,7 @@
             this.uiNoStrings.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiNoStrings.Location = new System.Drawing.Point(7, 38);
             this.uiNoStrings.Name = "uiNoStrings";
-            this.uiNoStrings.Size = new System.Drawing.Size(388, 22);
+            this.uiNoStrings.Size = new System.Drawing.Size(330, 18);
             this.uiNoStrings.TabIndex = 4;
             this.uiNoStrings.Text = "Don`t output string entries (For \'search by string\' only)";
             this.uiNoStrings.UseVisualStyleBackColor = true;
@@ -373,40 +449,40 @@
             this.uiSearchResults.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.uiSearchResults.ForeColor = System.Drawing.Color.White;
             this.uiSearchResults.FullRowSelect = true;
-            listViewGroup10.Header = "Strings";
-            listViewGroup10.Name = "string";
-            listViewGroup11.Header = "NPC";
-            listViewGroup11.Name = "npc";
-            listViewGroup12.Header = "Spells";
-            listViewGroup12.Name = "spell";
-            listViewGroup13.Header = "Zones";
-            listViewGroup13.Name = "zone";
-            listViewGroup14.Header = "?";
-            listViewGroup14.Name = "unknown";
-            listViewGroup15.Header = "Items";
-            listViewGroup15.Name = "item";
-            listViewGroup16.Header = "Buffs";
-            listViewGroup16.Name = "buff";
-            listViewGroup17.Header = "Stats";
-            listViewGroup17.Name = "stat";
-            listViewGroup18.Header = "Drop lists (Treasure)";
-            listViewGroup18.Name = "treasure";
+            listViewGroup1.Header = "Strings";
+            listViewGroup1.Name = "string";
+            listViewGroup2.Header = "NPC";
+            listViewGroup2.Name = "npc";
+            listViewGroup3.Header = "Spells";
+            listViewGroup3.Name = "spell";
+            listViewGroup4.Header = "Zones";
+            listViewGroup4.Name = "zone";
+            listViewGroup5.Header = "?";
+            listViewGroup5.Name = "unknown";
+            listViewGroup6.Header = "Items";
+            listViewGroup6.Name = "item";
+            listViewGroup7.Header = "Buffs";
+            listViewGroup7.Name = "buff";
+            listViewGroup8.Header = "Stats";
+            listViewGroup8.Name = "stat";
+            listViewGroup9.Header = "Drop lists (Treasure)";
+            listViewGroup9.Name = "treasure";
             this.uiSearchResults.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup10,
-            listViewGroup11,
-            listViewGroup12,
-            listViewGroup13,
-            listViewGroup14,
-            listViewGroup15,
-            listViewGroup16,
-            listViewGroup17,
-            listViewGroup18});
+            listViewGroup1,
+            listViewGroup2,
+            listViewGroup3,
+            listViewGroup4,
+            listViewGroup5,
+            listViewGroup6,
+            listViewGroup7,
+            listViewGroup8,
+            listViewGroup9});
             this.uiSearchResults.LargeImageList = this.uiListIcons;
             this.uiSearchResults.Location = new System.Drawing.Point(7, 66);
             this.uiSearchResults.MultiSelect = false;
             this.uiSearchResults.Name = "uiSearchResults";
             this.uiSearchResults.ShowItemToolTips = true;
-            this.uiSearchResults.Size = new System.Drawing.Size(929, 500);
+            this.uiSearchResults.Size = new System.Drawing.Size(929, 505);
             this.uiSearchResults.SmallImageList = this.uiListIcons;
             this.uiSearchResults.StateImageList = this.uiListIcons;
             this.uiSearchResults.TabIndex = 3;
@@ -452,7 +528,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiSearchTextBox.Location = new System.Drawing.Point(7, 6);
             this.uiSearchTextBox.Name = "uiSearchTextBox";
-            this.uiSearchTextBox.Size = new System.Drawing.Size(780, 26);
+            this.uiSearchTextBox.Size = new System.Drawing.Size(780, 22);
             this.uiSearchTextBox.TabIndex = 0;
             this.htmlToolTip1.SetToolTip(this.uiSearchTextBox, "Filter (GUID or string to find)");
             // 
@@ -460,10 +536,11 @@
             // 
             this.uiTabAdvancedSearch.BackColor = System.Drawing.Color.Silver;
             this.uiTabAdvancedSearch.Controls.Add(this.splitContainer2);
-            this.uiTabAdvancedSearch.Location = new System.Drawing.Point(4, 27);
+            this.uiTabAdvancedSearch.ImageKey = "script_code.png";
+            this.uiTabAdvancedSearch.Location = new System.Drawing.Point(4, 23);
             this.uiTabAdvancedSearch.Name = "uiTabAdvancedSearch";
             this.uiTabAdvancedSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.uiTabAdvancedSearch.Size = new System.Drawing.Size(944, 572);
+            this.uiTabAdvancedSearch.Size = new System.Drawing.Size(944, 576);
             this.uiTabAdvancedSearch.TabIndex = 4;
             this.uiTabAdvancedSearch.Text = "Advanced";
             // 
@@ -482,7 +559,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.uiScript);
-            this.splitContainer2.Panel2.Controls.Add(this.uiButtonRun);
+            this.splitContainer2.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer2.Size = new System.Drawing.Size(938, 565);
             this.splitContainer2.SplitterDistance = 510;
             this.splitContainer2.TabIndex = 4;
@@ -505,27 +582,25 @@
             // uiScript
             // 
             this.uiScript.ActiveView = Fireball.Windows.Forms.CodeEditor.ActiveView.BottomRight;
-            this.uiScript.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiScript.AutoListPosition = null;
             this.uiScript.AutoListSelectedText = "a123";
             this.uiScript.AutoListVisible = false;
             this.uiScript.CopyAsRTF = false;
+            this.uiScript.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiScript.FontName = "Consolas";
             this.uiScript.InfoTipCount = 1;
             this.uiScript.InfoTipPosition = null;
             this.uiScript.InfoTipSelectedIndex = 1;
             this.uiScript.InfoTipVisible = false;
-            lineMarginRender2.Bounds = new System.Drawing.Rectangle(19, 0, 18, 15);
-            this.uiScript.LineMarginRender = lineMarginRender2;
-            this.uiScript.Location = new System.Drawing.Point(3, 38);
+            lineMarginRender1.Bounds = new System.Drawing.Rectangle(19, 0, 18, 15);
+            this.uiScript.LineMarginRender = lineMarginRender1;
+            this.uiScript.Location = new System.Drawing.Point(0, 25);
             this.uiScript.LockCursorUpdate = false;
             this.uiScript.Name = "uiScript";
             this.uiScript.ParseOnPaste = true;
             this.uiScript.Saved = false;
             this.uiScript.ShowScopeIndicator = false;
-            this.uiScript.Size = new System.Drawing.Size(417, 524);
+            this.uiScript.Size = new System.Drawing.Size(424, 540);
             this.uiScript.SmoothScroll = false;
             this.uiScript.SplitviewH = -4;
             this.uiScript.SplitviewV = -4;
@@ -534,17 +609,25 @@
             this.uiScript.TextDrawStyle = Fireball.Windows.Forms.CodeEditor.TextDraw.TextDrawType.DoubleBorder;
             this.uiScript.WhitespaceColor = System.Drawing.SystemColors.ControlDark;
             // 
-            // uiButtonRun
+            // toolStrip1
             // 
-            this.uiButtonRun.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiButtonRun.Location = new System.Drawing.Point(3, 3);
-            this.uiButtonRun.Name = "uiButtonRun";
-            this.uiButtonRun.Size = new System.Drawing.Size(417, 29);
-            this.uiButtonRun.TabIndex = 2;
-            this.uiButtonRun.Text = "Run";
-            this.uiButtonRun.UseVisualStyleBackColor = true;
-            this.uiButtonRun.Click += new System.EventHandler(this.uiButtonRun_Click);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiRunButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(424, 25);
+            this.toolStrip1.TabIndex = 4;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // uiRunButton
+            // 
+            this.uiRunButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiRunButton.Image = global::RunesDataBase.Properties.Resources.lightning;
+            this.uiRunButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiRunButton.Name = "uiRunButton";
+            this.uiRunButton.Size = new System.Drawing.Size(23, 22);
+            this.uiRunButton.Text = "toolStripButton1";
+            this.uiRunButton.Click += new System.EventHandler(this.uiButtonRun_Click);
             // 
             // uiTabEditStrings
             // 
@@ -555,10 +638,10 @@
             this.uiTabEditStrings.Controls.Add(this.label2);
             this.uiTabEditStrings.Controls.Add(this.uiEditStrings_Key);
             this.uiTabEditStrings.Controls.Add(this.label1);
-            this.uiTabEditStrings.Location = new System.Drawing.Point(4, 27);
+            this.uiTabEditStrings.Location = new System.Drawing.Point(4, 23);
             this.uiTabEditStrings.Name = "uiTabEditStrings";
             this.uiTabEditStrings.Padding = new System.Windows.Forms.Padding(3);
-            this.uiTabEditStrings.Size = new System.Drawing.Size(944, 572);
+            this.uiTabEditStrings.Size = new System.Drawing.Size(944, 576);
             this.uiTabEditStrings.TabIndex = 1;
             this.uiTabEditStrings.Text = "Edit: Strings";
             // 
@@ -594,7 +677,7 @@
             this.uiEditStrings_Language.Enabled = false;
             this.uiEditStrings_Language.Location = new System.Drawing.Point(98, 38);
             this.uiEditStrings_Language.Name = "uiEditStrings_Language";
-            this.uiEditStrings_Language.Size = new System.Drawing.Size(678, 26);
+            this.uiEditStrings_Language.Size = new System.Drawing.Size(678, 22);
             this.uiEditStrings_Language.TabIndex = 3;
             // 
             // label2
@@ -602,7 +685,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 18);
+            this.label2.Size = new System.Drawing.Size(75, 14);
             this.label2.TabIndex = 2;
             this.label2.Text = "Language:";
             // 
@@ -613,7 +696,7 @@
             this.uiEditStrings_Key.Enabled = false;
             this.uiEditStrings_Key.Location = new System.Drawing.Point(98, 6);
             this.uiEditStrings_Key.Name = "uiEditStrings_Key";
-            this.uiEditStrings_Key.Size = new System.Drawing.Size(678, 26);
+            this.uiEditStrings_Key.Size = new System.Drawing.Size(678, 22);
             this.uiEditStrings_Key.TabIndex = 1;
             // 
             // label1
@@ -621,7 +704,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 18);
+            this.label1.Size = new System.Drawing.Size(75, 14);
             this.label1.TabIndex = 0;
             this.label1.Text = "Key string:";
             // 
@@ -629,10 +712,10 @@
             // 
             this.uiTabEditObject.BackColor = System.Drawing.Color.Silver;
             this.uiTabEditObject.Controls.Add(this.splitContainer1);
-            this.uiTabEditObject.Location = new System.Drawing.Point(4, 27);
+            this.uiTabEditObject.Location = new System.Drawing.Point(4, 23);
             this.uiTabEditObject.Name = "uiTabEditObject";
             this.uiTabEditObject.Padding = new System.Windows.Forms.Padding(3);
-            this.uiTabEditObject.Size = new System.Drawing.Size(944, 572);
+            this.uiTabEditObject.Size = new System.Drawing.Size(944, 576);
             this.uiTabEditObject.TabIndex = 2;
             this.uiTabEditObject.Text = "Edit: Object";
             // 
@@ -651,7 +734,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.uiObjectProps);
-            this.splitContainer1.Size = new System.Drawing.Size(938, 566);
+            this.splitContainer1.Size = new System.Drawing.Size(938, 570);
             this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -699,9 +782,17 @@
             this.uiObjectProps.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.uiObjectProps.Location = new System.Drawing.Point(3, 3);
             this.uiObjectProps.Name = "uiObjectProps";
-            this.uiObjectProps.Size = new System.Drawing.Size(564, 560);
+            this.uiObjectProps.Size = new System.Drawing.Size(564, 564);
             this.uiObjectProps.TabIndex = 0;
             this.uiObjectProps.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.uiObjectProps_PropertyValueChanged);
+            // 
+            // uiCommonIcons
+            // 
+            this.uiCommonIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uiCommonIcons.ImageStream")));
+            this.uiCommonIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.uiCommonIcons.Images.SetKeyName(0, "cog.png");
+            this.uiCommonIcons.Images.SetKeyName(1, "magnifier.png");
+            this.uiCommonIcons.Images.SetKeyName(2, "script_code.png");
             // 
             // uiOpenFDB
             // 
@@ -736,10 +827,16 @@
             this.syntaxDocument1.Modified = false;
             this.syntaxDocument1.UndoStep = 0;
             // 
+            // uiOpenGlobalIni
+            // 
+            this.uiOpenGlobalIni.FileName = "Global.ini";
+            this.uiOpenGlobalIni.Filter = "Global.ini|Global.ini|All files|*.*";
+            this.uiOpenGlobalIni.Title = "Find Global.ini";
+            // 
             // MainForm
             // 
             this.AcceptButton = this.uiButtonDoSearch;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 665);
             this.Controls.Add(this.uiTabs);
@@ -764,8 +861,11 @@
             this.uiTabAdvancedSearch.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.uiTabEditStrings.ResumeLayout(false);
             this.uiTabEditStrings.PerformLayout();
             this.uiTabEditObject.ResumeLayout(false);
@@ -827,11 +927,19 @@
         private System.Windows.Forms.FolderBrowserDialog uiBrowseFolder;
         private TheArtOfDev.HtmlRenderer.WinForms.HtmlToolTip htmlToolTip1;
         private System.Windows.Forms.TabPage uiTabAdvancedSearch;
-        private System.Windows.Forms.Button uiButtonRun;
         private TheArtOfDev.HtmlRenderer.WinForms.HtmlPanel uiAdvSearchResults;
         private Fireball.Windows.Forms.CodeEditorControl uiScript;
         private Fireball.Syntax.SyntaxDocument syntaxDocument1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Button uiBrowseGlobalIni;
+        private System.Windows.Forms.TextBox uiCfgPathGlobalIni;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.OpenFileDialog uiOpenGlobalIni;
+        private System.Windows.Forms.ToolStripMenuItem utilitiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminPanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton uiRunButton;
+        private System.Windows.Forms.ImageList uiCommonIcons;
     }
 }
 

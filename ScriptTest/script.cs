@@ -17,6 +17,10 @@ public class Main
          
         */
 
+        {
+            db.UI_ShowObjectList(db.Armor.Where(at => at.Type == ArmorType.Cloth && at.Limits.MinLevel >= 55 && at.Limits.MinLevel <= 60).OrderByDescending(x => x.ActualDefenceMag), x => x.GetDescription() + "; mdef:" + x.ActualDefenceMag);
+        }
+
         /* Show daggers below 70 level in descending order by their DPS */
         {
             // SCRIPT BEGIN

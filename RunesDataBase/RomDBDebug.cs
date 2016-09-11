@@ -10,11 +10,7 @@ namespace RunesDataBase
     {
        public static string ReportErrors(SubScript.RunesDataBase db)
        {
-           var sophia = db.NPCs.FirstOrDefault(npc =>
-           {
-               npc.Name = db.GetObjectName(npc.Guid, "");
-               return npc.Name == "София";
-           });
+           var sophia = db.NPCs.FirstOrDefault(npc => npc.Name == "София");
            if (sophia == null)
                 return "Cannot find Sophia";
 
