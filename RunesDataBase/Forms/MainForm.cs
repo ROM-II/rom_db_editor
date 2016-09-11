@@ -15,6 +15,7 @@ using Runes.Net.Db.String.db;
 using Runes.Net.Fdb;
 using Runes.Net.Shared;
 using Runes.Net.Shared.Html;
+using RunesDataBase.Sql;
 using RunesDataBase.SubScript;
 using RunesDataBase.TableObjects;
 
@@ -26,6 +27,7 @@ namespace RunesDataBase.Forms
         public Logger Log;
         public bool IsFDBOpened { get; private set; }
         internal static DataBase Database = null;
+        internal static SubScript.RunesDataBase DbApi { get; private set; } 
         public MainForm()
         {
             Instance = this;
@@ -68,6 +70,8 @@ namespace RunesDataBase.Forms
                 Fdb = new Fdb(),
                 RootDir = Path.GetDirectoryName(Path.GetDirectoryName(cfgPath))
             };
+            DataBase.NameDataVersioned.SafeInc();
+
             Log.WriteLine("DataBase.RootDir = " + Database.RootDir);
             Database.Fdb.LoadFromFile(cfgPath);
             var form = new SelectLanguagesForm
@@ -106,6 +110,15 @@ namespace RunesDataBase.Forms
                     uiStatusLabel.Text = "Ready";
                     saveAllToolStripMenuItem.Enabled = newStringToolStripMenuItem.Enabled = true;
                 };
+
+                DbApi = new RunesDataBaseImpl
+                {
+                    Form = this,
+                    DataBase = Database
+                };
+                
+
+                DbRepository.Default.Configure(_cfg);
                 uiTabs.Invoke(func);
             }).Start();
         }
@@ -234,13 +247,6 @@ namespace RunesDataBase.Forms
             if (tolink != null)
             {
                 var obj = tolink.Object;
-                if (obj.Name == null)
-                {
-                    if (obj is ZoneObject)
-                        obj.Name = Database.GetZoneNameByGuid(obj.Guid);
-                    else
-                        obj.Name = Database.GetStringByGuid(obj.Guid, StringLinkKind.Name);
-                }
                 if (obj.ShortNote == null)
                     obj.ShortNote = Database.GetStringByGuid(obj.Guid, StringLinkKind.ShortNote);
                 if (obj.Title == null)
@@ -271,6 +277,8 @@ namespace RunesDataBase.Forms
             _cfg.Load();
             uiCfgDataFdb.Text = _cfg.FdbPath ?? uiCfgDataFdb.Text;
             uiCfgDataDb.Text = _cfg.DbPath ?? uiCfgDataDb.Text;
+            uiCfgPathGlobalIni.Text = _cfg.GlobalIniPath ?? uiCfgPathGlobalIni.Text;
+            DbRepository.Default.Configure(_cfg);
             foreach (TabPage p in uiTabs.TabPages)
                 TabPages.Add(p);
             SelectTab();
@@ -419,8 +427,13 @@ namespace RunesDataBase.Forms
 
         private void uiCurrentLangugae_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var lang = uiCurrentLangugae.SelectedItem;
-            Database.CurrentLanguage = (StringsDataBase) lang;
+            var lang = uiCurrentLangugae.SelectedItem as StringsDataBase;
+            if (lang == Database.CurrentLanguage)
+                return;
+
+            Database.CurrentLanguage = lang;
+            DataBase.NameDataVersioned.SafeInc();
+
             foreach (ListViewItem searchResult in uiSearchResults.Items)
             {
                 var id = int.Parse(searchResult.Name);
@@ -429,10 +442,6 @@ namespace RunesDataBase.Forms
                 if (link != null)
                 {
                     var obj = link.Object;
-                    if (obj is ZoneObject)
-                        obj.Name = Database.GetZoneNameByGuid(obj.Guid);
-                    else
-                        obj.Name = Database.GetStringByGuid(obj.Guid, StringLinkKind.Name);
                     searchResult.Text = obj.ToString();
                 }
             }
@@ -456,6 +465,7 @@ namespace RunesDataBase.Forms
         {
             _cfg.FdbPath = uiCfgDataFdb.Text;
             _cfg.DbPath = uiCfgDataDb.Text;
+            _cfg.GlobalIniPath = uiCfgPathGlobalIni.Text;
             _cfg.Save();
         }
 
@@ -495,12 +505,8 @@ namespace RunesDataBase.Forms
             foreach (var o in objects)
             {
                 sb.AppendLine("<tr>");
-
-                if (o.Name == null)
-                {
-                    o.Name = Database.GetNameForGuid(o.Guid);
-                }
-                var objName = $"[{o.Name}]"
+                
+                var objName = $"{o.Name}"
                     .HtmlFont(o.GetColor())
                     .HtmlWrap("a", "href=" + o.Guid, "target=romdb");
                 sb.AppendLine(objName.HtmlWrap("td"));
@@ -535,7 +541,7 @@ namespace RunesDataBase.Forms
 
         private void uiButtonRun_Click(object sender, EventArgs e)
         {
-            var csc = new CSharpCodeProvider(new Dictionary<string, string>() { { "CompilerVersion", "v4.0" } });
+            var csc = new CSharpCodeProvider(new Dictionary<string, string> { { "CompilerVersion", "v4.0" } });
             var parameters = new CompilerParameters(new[]
             {
                 "mscorlib.dll", "System.Core.dll", "romdb_editor.exe",
@@ -574,14 +580,9 @@ public class Main {
                 return;
             }
             var runFunc = results.CompiledAssembly.GetType("Main").GetMethod("Run");
-            var db = new RunesDataBaseImpl
-            {
-                Form = this,
-                DataBase = Database
-            };
             try
             {
-                runFunc.Invoke(null, new object[] {db});
+                runFunc.Invoke(null, new object[] { DbApi });
             }
             catch (Exception ex)
             {
@@ -610,5 +611,18 @@ public class Main {
             UI_EditObject(obj);
         }
 
+        private void uiBrowseGlobalIni_Click(object sender, EventArgs e)
+        {
+            if (uiOpenGlobalIni.ShowDialog() != DialogResult.OK)
+                return;
+            uiCfgPathGlobalIni.Text = uiOpenGlobalIni.FileName;
+        }
+
+
+
+        private void adminPanelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdminPanel.Call();
+        }
     }
 }

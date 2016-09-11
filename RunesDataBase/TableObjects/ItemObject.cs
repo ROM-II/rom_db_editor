@@ -5,9 +5,11 @@ using System.Drawing;
 using System.Linq;
 using Runes.Net.Db;
 using Runes.Net.Shared;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase.TableObjects
 {
+    [TypeConverter(typeof(EntitySelectConverter<ItemObject>))]
     public class ItemObject : BasicVisualTableObject
     {
         public ItemObject(BasicObject obj) : base(obj) { }
@@ -196,6 +198,9 @@ namespace RunesDataBase.TableObjects
             }
         }
         public override string GetIconName() { return "item"; }
+
+        public override string ToString()
+            => base.ToString() + $", lvl {Limits.MinLevel}";
     }
 
     public class LimitStruct: StructuredField

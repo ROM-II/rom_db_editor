@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="World">
+  <DataContextMoniker Name="/WorldDataContext" />
+  <nestedChildShapes>
+    <classShape Id="38ece260-5557-4e34-810f-2d11cd42a525" isExpanded="false" absoluteBounds="1.125, 3.5, 2, 0.45">
+      <DataClassMoniker Name="/WorldDataContext/RoleData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6c38874-1992-4078-b987-b9ba7d2166ff" absoluteBounds="1.1399999999999997, 3.96, 1.9700000000000002, 45.8248291015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ffc095de-27a9-478f-9085-602b7a88e9a2" isExpanded="false" absoluteBounds="1.125, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/WorldDataContext/WorldConfigTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="44404746-fa28-40b3-b5cc-bc4d8a8ec5fa" absoluteBounds="1.1399999999999997, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f8da9829-9319-492b-83e2-641d1053a5fb" isExpanded="false" absoluteBounds="6.5, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/WorldDataContext/AC_Base" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d9c501f-8d94-4598-9398-368473529918" absoluteBounds="6.515, 0.96, 1.9700000000000002, 6.2107340494791661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1c4a61e4-75ad-4e44-a579-b4195d420ffb" isExpanded="false" absoluteBounds="8.625, 1, 2, 0.45">
+      <DataClassMoniker Name="/WorldDataContext/AC_History" />
+      <nestedChildShapes>
+        <elementListCompartment Id="19f38d46-62a5-4c83-9c4c-4bc23d392da9" absoluteBounds="8.64, 1.46, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa3a32cf-c050-47e3-9600-d1827a35b8cd" isExpanded="false" absoluteBounds="6.5, 1.625, 2, 0.45">
+      <DataClassMoniker Name="/WorldDataContext/AC_Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a03756c3-5bd7-4c37-94a9-1cacb2fae1dd" absoluteBounds="6.5150000000000006, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.5 : 0.95); (7.5 : 1.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WorldDataContext/AC_Base/AC_Base_AC_Order" />
+      <nodes>
+        <classShapeMoniker Id="f8da9829-9319-492b-83e2-641d1053a5fb" />
+        <classShapeMoniker Id="aa3a32cf-c050-47e3-9600-d1827a35b8cd" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

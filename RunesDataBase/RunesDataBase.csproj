@@ -51,14 +51,28 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Release\HtmlRenderer.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="INIFileParser, Version=2.3.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMailingProps.cs" />
+    <Compile Include="Controls\AutocompleteDropdownControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\AutocompleteEditor.cs" />
+    <Compile Include="Controls\IAutocompleteSource.cs" />
+    <Compile Include="DataBaseCache.cs" />
+    <Compile Include="EntitySelectConverter.cs" />
     <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,17 +88,40 @@
     <Compile Include="BaseFormLink.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="Forms\AdminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdminPanel.Designer.cs">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EditObjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\EditObjectForm.Designer.cs">
       <DependentUpon>EditObjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NewAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewAccount.Designer.cs">
+      <DependentUpon>NewAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
+    <Compile Include="IStringConverter.cs" />
     <Compile Include="RomDBDebug.cs" />
-    <Compile Include="Sql\RomDbCategory.cs" />
-    <Compile Include="Sql\RomSqlConnection.cs" />
-    <Compile Include="Sql\ShopRecord.cs" />
+    <Compile Include="Sql\Account\Account.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Account.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Sql\DbRepository.cs" />
+    <Compile Include="Sql\SqlExtensions.cs" />
+    <Compile Include="Sql\World\RoleData.cs" />
+    <Compile Include="Sql\World\World.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>World.dbml</DependentUpon>
+    </Compile>
     <Compile Include="SubScript\RunesDataBase.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -133,11 +170,17 @@
     <EmbeddedResource Include="Forms\AddStringForm.resx">
       <DependentUpon>AddStringForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdminPanel.resx">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditObjectForm.resx">
       <DependentUpon>EditObjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewAccount.resx">
+      <DependentUpon>NewAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -152,6 +195,13 @@
     <EmbeddedResource Include="Forms\SelectLanguagesForm.resx">
       <DependentUpon>SelectLanguagesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Sql\World\World.dbml.layout">
+      <DependentUpon>World.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Sql\Account\Account.dbml.layout">
+      <DependentUpon>Account.dbml</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -161,6 +211,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Sql\Account\Account.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Account.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Sql\World\World.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>World.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -189,7 +249,19 @@
     <None Include="Resources\see_256.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\diskette.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\database_go.png" />
+    <None Include="Resources\database_save.png" />
+    <None Include="Resources\textfield_add.png" />
+    <None Include="Resources\lightning.png" />
+    <None Include="Resources\update.png" />
+    <None Include="Resources\accept_button.png" />
+    <None Include="Resources\mailing_list.png" />
     <Content Include="RoM.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

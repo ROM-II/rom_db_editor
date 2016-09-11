@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ROM_World" Class="WorldDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=ROM_World;Persist Security Info=True;User ID=romuser" SettingsObjectName="RunesDataBase.Properties.Settings" SettingsPropertyName="ROM_WorldConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.RoleData" Member="RoleData">
+    <Type Name="RoleData">
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsGM" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsEnterWorld" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CharField" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DBID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account_ID" Type="System.String" DbType="VarChar(65) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LogoutTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ZoneID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="X" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Y" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Z" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Dir" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Race" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Voc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Voc_Sub" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LV_Sub" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HP" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="MP" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="StomachPoint" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BodyCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BankCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RevX" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RevY" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RevZ" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RevDir" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RevZoneID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FaceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HairID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HairColor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BodyColor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgObjID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Card" Type="System.Data.Linq.Binary" DbType="VarBinary(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="KeyItem" Type="System.Data.Linq.Binary" DbType="VarBinary(2000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Title" Type="System.Data.Linq.Binary" DbType="VarBinary(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="QuestHistory" Type="System.Data.Linq.Binary" DbType="VarBinary(1024) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="QuestKillCount" Type="System.Data.Linq.Binary" DbType="VarBinary(100) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="QuestDaily" Type="System.Data.Linq.Binary" DbType="VarBinary(1024) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="QuestGroup" Type="System.Data.Linq.Binary" DbType="VarBinary(80) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LastCompleteTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuestLog" Type="System.Data.Linq.Binary" DbType="VarBinary(360) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SkillValue1" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue2" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue3" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue4" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue5" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue6" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue7" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue8" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue9" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue10" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue11" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue12" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue13" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue14" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue15" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue16" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue17" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue18" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue19" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue20" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue21" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue22" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue23" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue24" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue25" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue26" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue27" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue28" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue29" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="SkillValue30" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Buff" Type="System.Data.Linq.Binary" DbType="VarBinary(1404) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="DeadCountDown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Coldown" Type="System.Data.Linq.Binary" DbType="VarBinary(3680) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RefineColdown" Type="System.Data.Linq.Binary" DbType="VarBinary(164) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="BodyMoney" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BankMoney" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PartyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FriendNote" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="GuildID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GuildRank" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GuildGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GuildRankTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GuildSelfNote" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="GuildLeaderNote" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="PlayTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BoneScale" Type="System.Data.Linq.Binary" DbType="VarBinary(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="vX" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="vY" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="vZ" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="IsBillboardAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PKScore" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientFlag" Type="System.Data.Linq.Binary" DbType="VarBinary(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TitleStr" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsShowTitle" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnX" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnY" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnZ" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnDir" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnZoneID" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Famous10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous9" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous8" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous7" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous6" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Famous1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DestroyTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RentFunction" Type="System.Data.Linq.Binary" DbType="VarBinary(200) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="MaxLv" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ShowEQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HouseDBID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientData" Type="System.Data.Linq.Binary" DbType="VarBinary(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SysFlag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GoodEvil" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="FriendClientData" Type="System.Data.Linq.Binary" DbType="VarBinary(1920) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="FriendGroupSortID" Type="System.Data.Linq.Binary" DbType="VarBinary(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="MonsterHunter" Type="System.Data.Linq.Binary" DbType="VarBinary(816) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="VocCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BoxEnergy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LocationSave" Type="System.Data.Linq.Binary" DbType="VarBinary(4200) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RealTimeFlag" Type="System.Data.Linq.Binary" DbType="VarBinary(400) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="PlayTimeFlag" Type="System.Data.Linq.Binary" DbType="VarBinary(400) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="MedalCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LuaValueFlag" Type="System.Data.Linq.Binary" DbType="VarBinary(4000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Money_Bonus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HorseColor" Type="System.Data.Linq.Binary" DbType="Binary(16) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RaiseMode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RaiseExpRate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RaiseZoneID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RaiseRevX" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RaiseRevY" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="RaiseRevZ" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="TombItemGUID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TombCreateTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TombZoneID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TombX" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="TombY" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="TombZ" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="TombDebtExp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TombDebtTp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TombExp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GoodEvilBonus" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney6" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney7" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney8" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney9" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney11" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney12" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney13" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney14" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney15" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney16" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney17" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney18" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney19" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney20" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney21" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney22" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney23" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney24" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney25" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney26" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney27" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney28" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney29" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountMoney30" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LockAccountTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Honor" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="HonorWorth" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="LastBeHonorKilledTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaxPlantCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyTraderCount" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="AutoBotCount" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="BotReportDBID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BotReportTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BotReportProtectTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InstanceSetting" Type="System.Data.Linq.Binary" DbType="VarBinary(800) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ExpDownRate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DebtExpRate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DebtTpRate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomKey" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SuitSkill_LearnCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SuitSkill_MaxEqCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SuitSkill_Learn" Type="System.Data.Linq.Binary" DbType="VarBinary(800) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SuitSkill_EQ" Type="System.Data.Linq.Binary" DbType="VarBinary(40) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="InstanceSetting_KeyID" Type="System.Data.Linq.Binary" DbType="VarBinary(400) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="InstanceSetting_LiveTime" Type="System.Data.Linq.Binary" DbType="VarBinary(400) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="InstanceSetting_ExtendTime" Type="System.Data.Linq.Binary" DbType="VarBinary(400) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Pet_NextMergeResetTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Pet_Money" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CoolSuitList" Type="System.Data.Linq.Binary" DbType="VarBinary(1120) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CoolClothList" Type="System.Data.Linq.Binary" DbType="VarBinary(2000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CoolSuitID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PetExBag" Type="System.Data.Linq.Binary" DbType="VarBinary(404) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="HorseExBag" Type="System.Data.Linq.Binary" DbType="VarBinary(2004) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="GuildLeaveTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IncursivePoint" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_Famous" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_TitleID1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_TitleID2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_TitleID3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_TitleID4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_Lv" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TitleSys_Exp" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SerialCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SerialCode1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SerialCode_All" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SlotMachine_History" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SlotMachine_RandSeed" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SlotMachine_FreeCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DuelistReward" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PetCard" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="DreamlandCoin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PhiriusShellCoin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EnergyJusticeCoin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProofLegendCoin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrialBadgeCoin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RelicsCoin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorldConfigTable" Member="WorldConfigTable">
+    <Type Name="WorldConfigTable">
+      <Column Name="GUID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ZoneID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BeginTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CmdStr" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Str" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AC_Base" Member="AC_Base">
+    <Type Name="AC_Base">
+      <Column Name="GUID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DestroyTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LiveTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NowPrices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuyOutPrices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PricesType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SellerDBID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SellerName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BuyerDBID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuyerName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Type2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Type3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EqWearType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rare" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SexType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RaceType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="JobType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgObjID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Serial" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Durable" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ability" Type="System.Data.Linq.Binary" DbType="Binary(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RuneVolume" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImageObjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImportAcItemGUID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AC_Base_AC_Order" Member="AC_Order" ThisKey="GUID" OtherKey="ACBaseGUID" Type="AC_Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AC_History" Member="AC_History">
+    <Type Name="AC_History">
+      <Column Name="GUID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ACID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DestroyTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SellerName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BuyerName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Prices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PricesType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrgObjID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Serial" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Durable" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ability" Type="System.Data.Linq.Binary" DbType="Binary(32) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RuneVolume" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImageObjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AC_Order" Member="AC_Order">
+    <Type Name="AC_Order">
+      <Column Name="GUID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ACBaseGUID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuyerDBID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AC_Base_AC_Order" Member="AC_Base" ThisKey="ACBaseGUID" OtherKey="GUID" Type="AC_Base" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>

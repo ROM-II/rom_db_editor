@@ -4,9 +4,11 @@ using System.Drawing;
 using System.Linq;
 using Runes.Net.Db;
 using Runes.Net.Shared;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase.TableObjects
 {
+    [TypeConverter(typeof(EntitySelectConverter<StatObject>))]
     public class StatObject : BasicVisualTableObject
     {
         public StatObject(BasicObject obj) : base(obj) { }
@@ -77,5 +79,7 @@ namespace RunesDataBase.TableObjects
         {
             return "stat";
         }
+        public override string ToString()
+            => $"{MainForm.Database.GetNameForGuidWithGuid2(Guid)}, {string.Join(", ", Stats.Where(o => !o.IsEmpty))}";
     }
 }

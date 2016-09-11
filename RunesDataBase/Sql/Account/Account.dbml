@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ROM_Account" Class="AccountDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=ROM_Account;Persist Security Info=True;User ID=romuser" SettingsObjectName="RunesDataBase.Properties.Settings" SettingsPropertyName="ROM_AccountConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PlayerAccount" Member="PlayerAccount">
+    <Type Name="PlayerAccount">
+      <Column Name="Account_ID" Type="System.String" DbType="VarChar(63) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="IsMd5Password" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsAutoConvertMd5" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ChargType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Point" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AccountState" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FreezeType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GameID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastLoginGameID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AccountType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PlayTimeQuota" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastLoginTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastLogoutTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsInfant" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PlayTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstLoginTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ValidTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserState" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Col1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Col2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Col3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VivoxLicenseTime" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ResetPassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FreezeUntil" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateTime" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

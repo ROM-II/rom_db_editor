@@ -15,8 +15,6 @@ namespace RunesDataBase.TableObjects
             set { DbObject.SetField("srcrecipe", value); }
         }
 
-        
-
         [DisplayName("Max stats count")] [Category("Equipment Properties")]
         public uint MaxAttrCount
         {

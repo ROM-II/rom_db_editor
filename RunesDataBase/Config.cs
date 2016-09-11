@@ -14,16 +14,20 @@ namespace RunesDataBase
 
         public string FdbPath { get; set; }
         public string DbPath { get; set; }
+        public string GlobalIniPath { get; set; }
 
         public void Load()
         {
             FdbPath = _ini["Path", "DataFdb_Path"];
             DbPath = _ini["Path", "DB_Path"];
+            GlobalIniPath = _ini["Path", "GlobalIni_Path"];
         }
         public void Save()
         {
             _ini["Path", "DataFdb_Path"] = FdbPath;
             _ini["Path", "DB_Path"] = DbPath;
+            _ini["Path", "GlobalIni_Path"] = GlobalIniPath;
+            _ini.Save();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using Runes.Net.Db;
 using Runes.Net.Shared;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase.TableObjects
 {
@@ -13,16 +14,23 @@ namespace RunesDataBase.TableObjects
             if (obj == null)
                 throw new NullReferenceException();
             DbObject = obj;
+            NameInternal = new Outdatable<string>(DataBase.NameDataVersioned, () 
+                => MainForm.Database.GetNameForGuidWithGuid2(Guid));
         }
         [Browsable(false)]
         public BasicObject DbObject { get; protected set; }
         [ReadOnly(true)]
         [Category("System")]
         [DisplayName("GUID")]
-        public uint Guid { get { return DbObject.Guid; } }
+        public uint Guid => DbObject.Guid;
+
+        [Browsable(false)]
+        internal Outdatable<string> NameInternal { get; }
+
         [ReadOnly(true)]
         [Category("System")]
-        public string Name { get; internal set; }
+        public string Name 
+            => NameInternal.Value;
         [ReadOnly(true)]
         [Category("System")]
         public string ShortNote { get; internal set; }
@@ -37,28 +45,17 @@ namespace RunesDataBase.TableObjects
         {
             if (DbObject == null)
                 return "NULL";
-            var s = Name;
-            if (s == null)
-            {
-                var guid = DbObject.Guid;
-                s = guid.ToString();
-                if (guid == 0)
-                    s = "???";
-            }
-            return string.Format("[{0}]", s);
+            return Name ?? (Guid == 0 ? "??? " : "") + $"[{Guid}]";
         }
 
-        public virtual Color GetColor()
-        {
-            return Color.White;
-        }
+        public virtual Color GetColor() 
+            => Color.White;
 
-        public virtual string GetDescription()
-        {
-            return "Object of unsupported type";
-        }
+        public virtual string GetDescription() 
+            => "Object of unsupported type";
 
-        public virtual string GetIconName() { return "unknown"; }
+        public virtual string GetIconName() 
+            => "unknown";
 
         internal static BasicTableObject GenerateObject(BasicObject obj)
         {

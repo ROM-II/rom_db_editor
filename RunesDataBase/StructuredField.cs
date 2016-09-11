@@ -4,7 +4,6 @@ using RunesDataBase.TableObjects;
 
 namespace RunesDataBase
 {
-    
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class StructuredField
     {

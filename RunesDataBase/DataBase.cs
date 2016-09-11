@@ -11,7 +11,7 @@ using RunesDataBase.TableObjects;
 
 namespace RunesDataBase
 {
-    public class DataBase
+    public partial class DataBase 
     {
         public Logger Log { get; set; }
         public string RootDir { get; set; }
@@ -19,6 +19,8 @@ namespace RunesDataBase
         public StringsDataBase CurrentLanguage { get; set; }
         public List<StringsDataBase> Languages = new List<StringsDataBase>();
         internal readonly List<Table> Dbs = new List<Table>();
+
+        public static readonly SimpleVersionProvider NameDataVersioned = new SimpleVersionProvider();
 
         public StringsDataBase LanguageByName(string shortName)
         {
@@ -259,7 +261,6 @@ namespace RunesDataBase
             {
                 var sysname = $"Sys{o.Guid}_name";
                 AddKeyToAllLanguages(sysname);
-                o.Name = sysname;
             }
             return o;
         }
@@ -298,6 +299,12 @@ namespace RunesDataBase
                 GetZoneNameByGuid(guid) :
                 GetStringByGuid(guid, StringLinkKind.Name) + $"({guid})";
             return sysname ?? guid.ToString();
+        }
+        public string GetNameForGuidWithGuid2(uint guid)
+        {
+            return $"[{guid}] " + ((GetDbByGuid(guid) == ZoneTable
+                ? GetZoneNameByGuid(guid)
+                : GetStringByGuid(guid, StringLinkKind.Name)) ?? "");
         }
     }
 }

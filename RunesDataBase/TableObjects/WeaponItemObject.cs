@@ -3,6 +3,7 @@ using System.Linq;
 using Runes.Net.Db;
 using Runes.Net.Shared;
 using Runes.Net.Shared.Html;
+using RunesDataBase.Forms;
 
 namespace RunesDataBase.TableObjects
 {
@@ -74,7 +75,7 @@ namespace RunesDataBase.TableObjects
             get
             {
                 var field = Attributes.FirstOrDefault(a => a.Type == WearEquipmentType.MagicDamage);
-                return field == null ? DamageMag : field.Value;
+                return field?.Value ?? DamageMag;
             }
         }
 
@@ -88,5 +89,8 @@ namespace RunesDataBase.TableObjects
                 return ActualDamagePhys/delay;
             }
         }
+
+        public override string ToString()
+            => base.ToString() + $" [P: {ActualDamagePhys:F0}; M: {ActualDamageMag:F0}; DPS: {ActualDPS:F0}]";
     }
 }

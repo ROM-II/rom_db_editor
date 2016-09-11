@@ -49,7 +49,7 @@ namespace RunesDataBase.Forms
             switch (sfx)
             {
                 case "name":
-                    obj.Name = uiEditStrings_Value.Text;
+                    obj.NameInternal.Reset();
                     break;
                 case "shortnote":
                     obj.ShortNote = uiEditStrings_Value.Text;
