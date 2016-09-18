@@ -11,5 +11,11 @@ namespace RunesDataBase.Utils
                 component.Invoke(act);
             act();
         }
+        public static void ThreadSafeInvoke<T>(this T component, Action<T> act) where T: Control
+        {
+            if (component.InvokeRequired)
+                component.Invoke(act);
+            act(component);
+        }
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Colors.cs" />
     <Compile Include="IVersioned.cs" />
     <Compile Include="Outdatable.cs" />
     <Compile Include="BinaryReaderExt.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="IDescribable.cs" />
     <Compile Include="IDescribableHtml.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="PathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResetableLazy.cs" />
     <Compile Include="RomEncoding.cs" />

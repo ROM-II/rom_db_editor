@@ -7,6 +7,8 @@ namespace Runes.Net.Shared
     {
         public static string DecodePassword(string pwd, string key )
         {
+            pwd = pwd.ToUpperInvariant();
+
             var buf = new byte[256];
             var keyLen = key.Length;
             var pwdLen = pwd.Length/2;

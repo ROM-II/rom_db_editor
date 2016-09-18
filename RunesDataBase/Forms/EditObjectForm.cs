@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using RunesDataBase.TableObjects;
 using RunesDataBase.Utils;
@@ -72,6 +73,40 @@ namespace RunesDataBase.Forms
 
             addShortNoteToolStripMenuItem.Visible = false;
             editShortNoteToolStripMenuItem.Visible = true;
+        }
+
+        private void uiObjectProps_DoubleClick(object sender, EventArgs e)
+        {
+            Debug.WriteLine($"#DBLCLICK: [{e.GetType()}]: {e}");
+        }
+
+        private void uiObjectProps_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Debug.WriteLine($"#MDBLCLICK: [{e.GetType()}]: {e}");
+        }
+
+        private void uiGotoObjectByGuidMenuItem_Click(object sender, EventArgs e)
+        {
+            var gridItem = uiObjectProps.SelectedGridItem;
+            uint? guid = null;
+            if (gridItem?.Value is uint)
+                guid = (uint) gridItem.Value;
+            else if (gridItem?.Value is int)
+                guid = (uint)(int)gridItem.Value;
+            else
+            {
+                var str = gridItem?.Value as string;
+                if (str != null)
+                {
+                    guid = GuidExtractor.ExtractGuid(str);
+                }
+                else if (gridItem?.Value != null)
+                {
+                    str = gridItem.Value.ToString();
+                    guid = GuidExtractor.ExtractGuid(str);
+                }
+            }
+            GotoObject.GotoAndForget(guid);
         }
     }
 }

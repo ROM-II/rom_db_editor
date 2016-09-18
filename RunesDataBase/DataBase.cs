@@ -90,9 +90,10 @@ namespace RunesDataBase
         {
             var targetDb = GetDbByGuid(guid);
             var result = targetDb?[guid];
-            if (result != null)
-                return result;
-            return Dbs.Select(db => db[guid]).FirstOrDefault(r => r != null);
+            return result 
+                ?? Dbs
+                .Select(db => db[guid])
+                .FirstOrDefault(r => r != null);
         }
 
         public BasicTableObject this[uint guid] => GetObjectByGuid(guid);

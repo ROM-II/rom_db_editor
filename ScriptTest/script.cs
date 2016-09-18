@@ -21,6 +21,16 @@ public class Main
             db.UI_ShowObjectList(db.Armor.Where(at => at.Type == ArmorType.Cloth && at.Limits.MinLevel >= 55 && at.Limits.MinLevel <= 60).OrderByDescending(x => x.ActualDefenceMag), x => x.GetDescription() + "; mdef:" + x.ActualDefenceMag);
         }
 
+        {
+            var list = db.Armor.Where(item =>
+                item.Limits.MinLevel <= 60 &&
+                item.Pos == ArmorPos.Necklace
+                )
+                .OrderByDescending(x => x.Limits.MinLevel)
+                .ThenByDescending(x => x.Rarity);
+            db.UI_ShowObjectList(list, o => string.Format("level: {0}", o.Limits.MinLevel));
+        }
+
         /* Show daggers below 70 level in descending order by their DPS */
         {
             // SCRIPT BEGIN
@@ -63,11 +73,10 @@ public class Main
         {
             // SCRIPT BEGIN
             var list = db.Stats.Where(stat =>
-                stat.Stats.Any(e => e.Type == WearEquipmentType.Inteligence) &&
-                stat.Stats.Any(e => e.Type == WearEquipmentType.MagicAttack)
-                ).ToList();
-            list.Sort((a, b) => a.Stats[0].Value > b.Stats[0].Value ? -1 : (a.Stats[0].Value < b.Stats[0].Value ? 1 : 0));
-            db.UI_ShowObjectList(list, o => string.Join("; ", o.Stats.Where(e => !e.IsEmpty)));
+                stat.Stats.Any(e => e.Type == WearEquipmentType.Dexterity) &&
+                stat.Stats.Any(e => e.Type == WearEquipmentType.PhysAttack)
+                ).OrderByDescending(x => x.Stats.First().Value);
+            db.UI_ShowObjectList(list, o => string.Join("; ", o.Stats.Where(e => !e.IsEmpty)) + "; " + ((double)o.Stats[0].Value / o.Stats[1].Value).ToString("P"));
             // SCRIPT END
         }
 

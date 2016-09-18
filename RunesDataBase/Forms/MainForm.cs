@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Fireball.Syntax;
 using Fireball.Syntax.SyntaxDocumentParsers;
 using Microsoft.CSharp;
+using RazorEngine;
+using RazorEngine.Templating;
 using Runes.Net.Db.String.db;
 using Runes.Net.Fdb;
 using Runes.Net.Shared;
@@ -18,6 +20,10 @@ using Runes.Net.Shared.Html;
 using RunesDataBase.Sql;
 using RunesDataBase.SubScript;
 using RunesDataBase.TableObjects;
+using RunesDataBase.Utils;
+using FullPathTemplateKey = RazorEngine.Templating.FullPathTemplateKey;
+using Language = Fireball.Syntax.Language;
+using ResolveType = RazorEngine.Templating.ResolveType;
 
 namespace RunesDataBase.Forms
 {
@@ -42,11 +48,16 @@ namespace RunesDataBase.Forms
         
         private void openFDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Log.WriteLine("Opening FDB ...");
+            LoadProcedure();
+        }
+
+        private void LoadProcedure()
+        {
             var cfgPath = Path.Combine(_cfg.FdbPath, "data.fdb");
+            Log.WriteLine("Opening FDB ...");
             Log.WriteLine("cfgpath = " + cfgPath);
-            if (!File.Exists(cfgPath) || 
-                MessageBox.Show("Load data.fdb from '" + cfgPath + "' [yes] or select different location? [no]", 
+            if (!File.Exists(cfgPath) ||
+                MessageBox.Show($"Load data.fdb from '{cfgPath}' [yes] or select different location? [no]",
                 "data.fdb loading", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
                 Log.WriteLine("File not found or user want different location");
@@ -58,7 +69,7 @@ namespace RunesDataBase.Forms
             _searchResults.Clear();
             uiSearchResults.Items.Clear();
             SelectTab();
-            if (IsFDBOpened && Database != null && Database.Fdb != null)
+            if (IsFDBOpened && Database?.Fdb != null)
             {
                 IsFDBOpened = false;
                 Database.Fdb.Close();
@@ -74,53 +85,77 @@ namespace RunesDataBase.Forms
 
             Log.WriteLine("DataBase.RootDir = " + Database.RootDir);
             Database.Fdb.LoadFromFile(cfgPath);
-            var form = new SelectLanguagesForm
+            List<string> languages = null;
+            if (_cfg.LastLoadedLanguages.Any() && MessageBox.Show(
+                text: "Load languages, that was loaded last time [yes] or different ones [no]?\r\n" +
+                      $"Last time following languages were loaded: {string.Join(", ", _cfg.LastLoadedLanguages)}",
+                caption: "Languages",
+                buttons: MessageBoxButtons.YesNo
+                ) == DialogResult.Yes)
             {
-                Fdb = Database.Fdb
-            };
-            if (form.ShowDialog() != DialogResult.OK)
-            {
-                Database.Fdb.Close();
-                Database.Fdb = null;
-                Database = null;
-                IsFDBOpened = false;
-                return;
+                languages = _cfg.LastLoadedLanguages;
             }
-            Log.WriteLine("User loaded languages: " + string.Join("; ", form.Languages));
+            else
+            {
+                var form = new SelectLanguagesForm
+                {
+                    Fdb = Database.Fdb
+                };
+                if (form.ShowDialog() != DialogResult.OK)
+                {
+                    Database.Fdb.Close();
+                    Database.Fdb = null;
+                    Database = null;
+                    IsFDBOpened = false;
+                    return;
+                }
+                languages = form.Languages;
+                _cfg.LastLoadedLanguages.Clear();
+                _cfg.LastLoadedLanguages.AddRange(languages);
+                _cfg.Save();
+            }
+            Log.WriteLine("User loaded languages: " + string.Join("; ", languages));
             IsFDBOpened = true;
             uiStatusLabel.Text = "Loading *.db ...";
-            new Task(() =>
+            new Task(() => {LoadProcedureAsyncPart(languages);}).Start();
+        }
+
+        private void LoadProcedureAsyncPart(IEnumerable<string> languages)
+        {
+            var list = OpenedEditObjectWindows.Values.ToArray();
+            foreach (var window in list)
             {
-                var dbList = (List<string>)form.Languages;
-                foreach (var name in dbList)
+                window.ThreadSafeInvoke(w => w.Close());
+            }
+
+            
+            foreach (var name in languages)
+            {
+                Database.LoadLanguage(name);
+            }
+            Database.LoadDbs();
+
+            DbApi = new RunesDataBaseImpl
+            {
+                Form = this,
+                DataBase = Database
+            };
+
+            DbRepository.Default.Configure(_cfg);
+
+            uiTabs.ThreadSafeInvoke(() =>
+            {
+                uiCurrentLangugae.Items.Clear();
+                foreach (var lang in Database.Languages)
                 {
-                    Database.LoadLanguage(name);
+                    uiCurrentLangugae.Items.Add(lang);
                 }
-                Database.LoadDbs();
-                Action func = () =>
-                {
-                    uiCurrentLangugae.Items.Clear();
-                    foreach (var lang in Database.Languages)
-                    {
-                        uiCurrentLangugae.Items.Add(lang);
-                    }
-                    //if (Database.Languages.Any())
-                        uiCurrentLangugae.SelectedItem = Database.Languages.FirstOrDefault();
-                    uiTabs.Enabled = true;
-                    uiStatusLabel.Text = "Ready";
-                    saveAllToolStripMenuItem.Enabled = newStringToolStripMenuItem.Enabled = true;
-                };
-
-                DbApi = new RunesDataBaseImpl
-                {
-                    Form = this,
-                    DataBase = Database
-                };
-                
-
-                DbRepository.Default.Configure(_cfg);
-                uiTabs.Invoke(func);
-            }).Start();
+                //if (Database.Languages.Any())
+                uiCurrentLangugae.SelectedItem = Database.Languages.FirstOrDefault();
+                uiTabs.Enabled = true;
+                uiStatusLabel.Text = "Ready";
+                saveAllToolStripMenuItem.Enabled = newStringToolStripMenuItem.Enabled = true;
+            });
         }
 
         private void uiButtonDoSearch_Click(object sender, EventArgs e)
@@ -172,14 +207,14 @@ namespace RunesDataBase.Forms
         }
         private void SearchByString(string filter)
         {
-            var li_filter = filter.ToLowerInvariant();
+            var liFilter = filter.ToLowerInvariant();
             if (uiNoStrings.Checked)
             {
-                foreach (var l in Database.Languages)
+                foreach (var language in Database.Languages)
                 {
-                    foreach (var str in l.NamesWhereValuesContains(li_filter))
+                    foreach (var str in language.NamesWhereValuesContains(liFilter))
                     {
-                        var link = new StringEditFormLink(str.Key, str.Value, l.FullLanguageName);
+                        var link = new StringEditFormLink(str.Key, str.Value, language.FullLanguageName);
                         TryExtractObjectFromStringLink(link);
                     }
                 }  
@@ -188,7 +223,7 @@ namespace RunesDataBase.Forms
             {
                 foreach (var l in Database.Languages)
                 {
-                    foreach (var str in l.WhereKeysOrValuesContains(li_filter))
+                    foreach (var str in l.WhereKeysOrValuesContains(liFilter))
                     {
                         var link = new StringEditFormLink(str.Key, str.Value, l.FullLanguageName);
                         PushObjectToResults(link, "string");
@@ -215,10 +250,8 @@ namespace RunesDataBase.Forms
                 return;
             if (_searchResults.Any(o =>
             {
-                if (!(o is TableObjectEditLink))
-                    return false;
-                var bto = ((TableObjectEditLink)o).Object;
-                return bto.Guid == guid;
+                var bto = (o as TableObjectEditLink)?.Object;
+                return bto?.Guid == guid;
             }))
                 return;
             var tobj = Database[guid];
@@ -231,14 +264,17 @@ namespace RunesDataBase.Forms
             var items = uiSearchResults.SelectedItems;
             if (items.Count < 1)
                 return;
+
             var id = int.Parse(items[0].Name);
-            if (id < 0) return;
+            if (id < 0)
+                return;
+
             var obj = _searchResults[id];
-            if (obj is BaseFormLink)
-            {
-                var link = _searchResults[id] as BaseFormLink;
-                link?.Navigate();
-            }
+            if (!(obj is BaseFormLink))
+                return;
+
+            var link = _searchResults[id] as BaseFormLink;
+            link?.Navigate();
         }
 
         private void PushObjectToResults(IColoredDescribable o, string icon)
@@ -274,7 +310,28 @@ namespace RunesDataBase.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _cfg.Load();
+            var exception = _cfg.Load();
+            while (exception != null)
+            {
+                var answer = MessageBox.Show(
+                    text: $"Failed to load config (romdb.ini). \r\nWould you like to specify other correct/existing one [yes] or create/overwrite new one? [no]\r\nException: {exception}",
+                    caption: "Error in loading config",
+                    buttons: MessageBoxButtons.YesNo,
+                    icon: MessageBoxIcon.Question
+                    );
+
+                if (answer != DialogResult.Yes || uiFindConfig.ShowDialog() != DialogResult.OK)
+                {
+                    File.WriteAllText(_cfg.DefaultPath,
+                        @"[Path]" +
+                        @"DataFdb_Path = c:\runewaker\resource\fdb\" +
+                        @"DB_Path = c:\runewaker\resource\data\" +
+                        @"GlobalIni_Path = C:\Runewaker\Server\Realm_01_Common\Global.ini");
+                }
+
+                exception = _cfg.Load(uiFindConfig.FileName);
+            }
+
             uiCfgDataFdb.Text = _cfg.FdbPath ?? uiCfgDataFdb.Text;
             uiCfgDataDb.Text = _cfg.DbPath ?? uiCfgDataDb.Text;
             uiCfgPathGlobalIni.Text = _cfg.GlobalIniPath ?? uiCfgPathGlobalIni.Text;
@@ -287,7 +344,7 @@ namespace RunesDataBase.Forms
             {
                 Text = "db.UI_ShowObjectList(db.Equipment.Where(item => item.Rarity > RareType.Legend));"
             };
-            doc.Parser = new DefaultParser()
+            doc.Parser = new DefaultParser
             {
                 Document = doc,
                 Language = Language.FromSyntaxFile("csharp.syn")
@@ -325,14 +382,14 @@ namespace RunesDataBase.Forms
             var useCfg = false;
             if (Directory.Exists(path))
             {
-                useCfg = MessageBox.Show("Save everything to " + path + " [yes] or select different location?[no]",
+                useCfg = MessageBox.Show($"Save everything to {path} [yes] or select different location?[no]",
                     "data.fdb loading", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
                 uiSaveDialog.InitialDirectory = path;
             }
             uiSaveDialog.InitialDirectory = Database.RootDir;
             foreach (var sdb in Database.Languages.Where(s=>s.ModifiedFlag))
             {
-                uiSaveDialog.Title = "Save " + sdb.FileName;
+                uiSaveDialog.Title = $"Save {sdb.FileName}";
                 uiSaveDialog.FileName = sdb.FileName;
                 if (useCfg)
                     uiSaveDialog.FileName = Path.Combine(path, sdb.FileName+".db");
@@ -342,7 +399,7 @@ namespace RunesDataBase.Forms
             }
             foreach (var db in Database.GetModifiedDataBases())
             {
-                uiSaveDialog.Title = "Save " + db.FileName;
+                uiSaveDialog.Title = $"Save {db.FileName}";
                 uiSaveDialog.FileName = db.FileName;
                 if (useCfg)
                     uiSaveDialog.FileName = Path.Combine(path, db.FileName);
@@ -395,34 +452,19 @@ namespace RunesDataBase.Forms
 
         private void ReportStatus(string statusString = null)
         {
-            Action func = () => { uiStatusLabel.Text = statusString ?? "Idle"; };
-            if (InvokeRequired)
-                Invoke(func);
-            else
-                func();
+            this.ThreadSafeInvoke(() => { uiStatusLabel.Text = statusString ?? "Idle"; });
         }
         private void SetEnabled(bool v = true)
         {
-            Action func = () =>
+            this.ThreadSafeInvoke(() =>
             {
                 uiTabs.Enabled = v;
                 menuStrip1.Enabled = v;
-            };
-            if (InvokeRequired)
-                Invoke(func);
-            else
-                func();
+            });
         }
         private void AddResult(ListViewItem lvi)
         {
-            Action func = () =>
-            {
-                uiSearchResults.Items.Add(lvi);
-            };
-            if (InvokeRequired)
-                Invoke(func);
-            else
-                func();
+            this.ThreadSafeInvoke(() => uiSearchResults.Items.Add(lvi));
         }
 
         private void uiCurrentLangugae_SelectedIndexChanged(object sender, EventArgs e)
@@ -489,16 +531,26 @@ namespace RunesDataBase.Forms
         {
             UI_ShowObjectList(objects, o => "");
         }
+
+        private ITemplateSource AdvancedResultView { get; }
+            = RazorExtensions.MakeTemplate("Subscript/HtmlTemplates/AdvancedResults.cshtml".ToAbsolutePath());
+
         public void UI_ShowObjectList<T>(IEnumerable<T> objects, Func<T, string> descriptor) where T : BasicTableObject
         {
-            var sb = new StringBuilder();
+            var html = Engine.Razor.RunCompile(AdvancedResultView, "AdvancedResults",
+                model: objects
+                    .Select((x, i) => new ResultsItem(i % 2 == 1, x.Name, x.Guid, descriptor(x), x)));
+            UI_ShowHTML(html);
+
+
+            /*var sb = new StringBuilder();
 
             sb.AppendLine("Results:".HtmlWrap("p"));
             sb.AppendLine("<table>");
             sb.AppendLine((
-                "Name".HtmlWrap("td", "style = \"background-color:#222222; width: auto\"") +
-                "GUID".HtmlWrap("td", "style = \"background-color:#222222; width: 128px\"") +
-                "Additional info".HtmlWrap("td", "style = \"background-color:#222222\""))
+                "Name".HtmlWrap("td", "style = 'background-color:#222222; width: auto; padding: 0, 5px, 0, 5px'") +
+                "GUID".HtmlWrap("td", "style = 'background-color:#222222; width: 128px'") +
+                "Additional info".HtmlWrap("td", "style = 'background-color:#222222'"))
                 .HtmlWrap("tr"));
             foreach (var o in objects)
             {
@@ -515,7 +567,7 @@ namespace RunesDataBase.Forms
             }
             sb.AppendLine("</table>");
 
-            UI_ShowHTML(DefaultHtmlWrap(sb.ToString()));
+            UI_ShowHTML(DefaultHtmlWrap(sb.ToString()));*/
         }
 
         private string DefaultHtmlWrap(string content)
@@ -621,6 +673,18 @@ public class Main {
         private void adminPanelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AdminPanel.Call();
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uiTabs.SelectTab(uiTabSearch);
+            uiSearchTextBox.Focus();
+            uiSearchTextBox.SelectAll();
+        }
+
+        private void goToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GotoObject.GotoAndForget();
         }
     }
 }

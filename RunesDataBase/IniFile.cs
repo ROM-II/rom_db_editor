@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Text;
+﻿using System;
 using IniParser;
 using IniParser.Model;
 
@@ -9,29 +8,59 @@ namespace RunesDataBase
     {
         public string Path { get; private set; }
         private FileIniDataParser Parser { get; } 
-        private IniData Data { get; }
+        private IniData Data { get; set; }
+
         public IniFile(string path)
         {
             Parser = new FileIniDataParser();
             Path = path;
-            Parser.Parser.Configuration.AllowDuplicateKeys = true;
-            Data = Parser.ReadFile(path); // todo: make (Re)Load method for this
+            Parser.Parser.Configuration
+                .AllowDuplicateKeys = true;
+            if (!string.IsNullOrWhiteSpace(path))
+                return;
+            Data = new IniData();
         }
 
         public string this[string section, string key]
         {
-            get { return Data[section][key]; }
-            set { Data[section][key] = value; }
+            get { return Data[section]?[key] ?? ""; }
+            set { SetValue(section, key, value); }
         }
         public string this[string key]
         {
-            get { return Data.Global[key]; }
+            get { return Data.Global[key] ?? ""; }
             set { Data.Global[key] = value; }
         }
 
-        public void Save()
+        public void Save(string path = null)
         {
-            Parser.WriteFile(Path, Data);
+            Parser.WriteFile(path ?? Path, Data);
+        }
+
+        public Exception Load(string filename = null)
+        {
+            Path = filename ?? Path;
+            try
+            {
+                Data = Parser.ReadFile(Path);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Data = new IniData();
+                return ex;
+            }
+        }
+
+        private void SetValue(string sectionName, string key, string value)
+        {
+            var section = Data.Sections[sectionName];
+            if (section == null)
+            {
+                Data.Sections.AddSection(sectionName);
+                section = Data.Sections[sectionName];
+            }
+            section[key] = value;
         }
     }
 }

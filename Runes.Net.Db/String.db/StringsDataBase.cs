@@ -109,18 +109,17 @@ namespace Runes.Net.Db.String.db
         }
 
         public IEnumerable<Tuple<string, string>> WhereKeyMatches(Predicate<string> matchFunc)
-        {
-            return from pair in Data where matchFunc(pair.Key) select new Tuple<string, string>(pair.Key, pair.Value);
-        }
-        public IEnumerable<KeyValuePair<string, string>> WhereKeysOrValuesContains(string s)
-        {
-            return Data.Where(pair => pair.Key.ContainsIgnoreCase(s) || pair.Value.ContainsIgnoreCase(s));
-        }
+            => from pair in Data
+               where matchFunc(pair.Key)
+               select new Tuple<string, string>(pair.Key, pair.Value);
 
-        public override string ToString()
-        {
-            return FullLanguageName;
-        }
+        public IEnumerable<KeyValuePair<string, string>> WhereKeysOrValuesContains(string s)
+            => Data.Where(pair =>
+                pair.Key.ContainsIgnoreCase(s) ||
+                pair.Value.ContainsIgnoreCase(s));
+
+        public override string ToString() 
+            => FullLanguageName;
 
         public IEnumerable<KeyValuePair<string, string>>  NamesWhereValuesContains(string s)
         {
@@ -134,7 +133,11 @@ namespace Runes.Net.Db.String.db
                 string r;
                 return Data.TryGetValue(key, out r) ? r : null;
             }
-            set { Data[key] = value; ModifiedFlag = true;}
+            set
+            {
+                Data[key] = value;
+                ModifiedFlag = true;
+            }
         }
     }
 }

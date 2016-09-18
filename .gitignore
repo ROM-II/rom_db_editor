@@ -16,3 +16,4 @@ Tests/obj/
 Release/
 Debug
 packages/
+.vs/

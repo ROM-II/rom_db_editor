@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace Runes.Net.Shared.Html
 {
@@ -13,10 +8,9 @@ namespace Runes.Net.Shared.Html
         {
             return tagName + "=\"" + argument + "\"";
         }
-        public static string ToHexString(this Color c)
-        {
-            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
-        }
+        public static string ToHexString(this Color c) 
+            => "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+
         public static string HtmlWrap(this string s, string tag)
         {
             return string.Format("<{0}>{1}</{0}>", tag, s);
@@ -34,10 +28,9 @@ namespace Runes.Net.Shared.Html
         {
             return s.HtmlWrap("b");
         }
-        public static string HtmlAddHorizontalLine(this string s)
-        {
-            return s += "<hr>";
-        }
+        public static string HtmlAddHorizontalLine(this string s) 
+            => s += "<hr>";
+
         public static string HtmlAddBreakLine(this string s)
         {
             return s += "<br>";

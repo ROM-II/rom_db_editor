@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -56,30 +57,16 @@ namespace RunesDataBase.TableObjects
         }
 
         public override Color GetColor()
-        {
-            switch (Stats.Count(stat=>!stat.IsEmpty))
-            {
-                case 1:
-                    return Color.Lime;
-                case 2:
-                    return Color.FromArgb(255, 209, 0);
-                case 3:
-                    return Color.FromArgb(254, 155, 0);
-                default:
-                    return Color.Red;
-            }
-        }
+            => Colors.GetColorForStat(Stats.Count(x => !x.IsEmpty), Rarity);
 
-        public override string GetDescription()
-        {
-            return Environment.NewLine+string.Join(Environment.NewLine, Stats.Where(o => !o.IsEmpty));
-        }
+        public override string GetDescription() => Environment.NewLine + string.Join(Environment.NewLine, Stats.Where(o => !o.IsEmpty));
 
-        public override string GetIconName()
-        {
-            return "stat";
-        }
-        public override string ToString()
-            => $"{MainForm.Database.GetNameForGuidWithGuid2(Guid)}, {string.Join(", ", Stats.Where(o => !o.IsEmpty))}";
+        public override string GetIconName() => "stat";
+
+        public override string ToString() => $"{MainForm.Database.GetNameForGuidWithGuid2(Guid)}, {string.Join(", ", Stats.Where(o => !o.IsEmpty))}";
+
+
+        public IEnumerable<WearStat> GetEffectsByType(WearEquipmentType type) => Stats.Where(e => e.Type == type);
+        public double GetEffectValueByType(WearEquipmentType type) => GetEffectsByType(type).Sum(x => x.Value);
     }
 }

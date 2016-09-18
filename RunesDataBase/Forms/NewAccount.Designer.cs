@@ -95,7 +95,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.uiLogin);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Verdana", 9F);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;

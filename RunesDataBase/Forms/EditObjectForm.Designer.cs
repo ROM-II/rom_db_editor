@@ -35,10 +35,12 @@
             this.cloneThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stringsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editShortNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addShortNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editShortNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiGotoObjectByGuidMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +53,8 @@
             this.uiObjectProps.Size = new System.Drawing.Size(791, 645);
             this.uiObjectProps.TabIndex = 1;
             this.uiObjectProps.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.uiObjectProps_PropertyValueChanged);
+            this.uiObjectProps.DoubleClick += new System.EventHandler(this.uiObjectProps_DoubleClick);
+            this.uiObjectProps.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.uiObjectProps_MouseDoubleClick);
             // 
             // menuStrip1
             // 
@@ -66,6 +70,8 @@
             // objectToolStripMenuItem
             // 
             this.objectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiGotoObjectByGuidMenuItem,
+            this.toolStripMenuItem1,
             this.cloneThisToolStripMenuItem,
             this.deleteThisToolStripMenuItem});
             this.objectToolStripMenuItem.Name = "objectToolStripMenuItem";
@@ -75,7 +81,8 @@
             // cloneThisToolStripMenuItem
             // 
             this.cloneThisToolStripMenuItem.Name = "cloneThisToolStripMenuItem";
-            this.cloneThisToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cloneThisToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.cloneThisToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.cloneThisToolStripMenuItem.Text = "Clone ...";
             this.cloneThisToolStripMenuItem.Click += new System.EventHandler(this.cloneThisToolStripMenuItem_Click);
             // 
@@ -83,7 +90,7 @@
             // 
             this.deleteThisToolStripMenuItem.Enabled = false;
             this.deleteThisToolStripMenuItem.Name = "deleteThisToolStripMenuItem";
-            this.deleteThisToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteThisToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.deleteThisToolStripMenuItem.Text = "Delete";
             this.deleteThisToolStripMenuItem.ToolTipText = "Not implemented yet";
             // 
@@ -98,6 +105,13 @@
             this.stringsToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.stringsToolStripMenuItem.Text = "Strings";
             // 
+            // addTitleToolStripMenuItem
+            // 
+            this.addTitleToolStripMenuItem.Name = "addTitleToolStripMenuItem";
+            this.addTitleToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.addTitleToolStripMenuItem.Text = "Add title";
+            this.addTitleToolStripMenuItem.Click += new System.EventHandler(this.addTitleToolStripMenuItem_Click);
+            // 
             // editTitleToolStripMenuItem
             // 
             this.editTitleToolStripMenuItem.Enabled = false;
@@ -105,6 +119,13 @@
             this.editTitleToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.editTitleToolStripMenuItem.Text = "Edit title";
             this.editTitleToolStripMenuItem.ToolTipText = "Not implemented yet";
+            // 
+            // addShortNoteToolStripMenuItem
+            // 
+            this.addShortNoteToolStripMenuItem.Name = "addShortNoteToolStripMenuItem";
+            this.addShortNoteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.addShortNoteToolStripMenuItem.Text = "Add short note";
+            this.addShortNoteToolStripMenuItem.Click += new System.EventHandler(this.addShortNoteToolStripMenuItem_Click);
             // 
             // editShortNoteToolStripMenuItem
             // 
@@ -114,19 +135,18 @@
             this.editShortNoteToolStripMenuItem.Text = "Edit short note";
             this.editShortNoteToolStripMenuItem.ToolTipText = "Not implemented yet";
             // 
-            // addTitleToolStripMenuItem
+            // uiGotoObjectByGuidMenuItem
             // 
-            this.addTitleToolStripMenuItem.Name = "addTitleToolStripMenuItem";
-            this.addTitleToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.addTitleToolStripMenuItem.Text = "Add title";
-            this.addTitleToolStripMenuItem.Click += new System.EventHandler(this.addTitleToolStripMenuItem_Click);
+            this.uiGotoObjectByGuidMenuItem.Name = "uiGotoObjectByGuidMenuItem";
+            this.uiGotoObjectByGuidMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.uiGotoObjectByGuidMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.uiGotoObjectByGuidMenuItem.Text = "Goto object ...";
+            this.uiGotoObjectByGuidMenuItem.Click += new System.EventHandler(this.uiGotoObjectByGuidMenuItem_Click);
             // 
-            // addShortNoteToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.addShortNoteToolStripMenuItem.Name = "addShortNoteToolStripMenuItem";
-            this.addShortNoteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.addShortNoteToolStripMenuItem.Text = "Add short note";
-            this.addShortNoteToolStripMenuItem.Click += new System.EventHandler(this.addShortNoteToolStripMenuItem_Click);
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(187, 6);
             // 
             // EditObjectForm
             // 
@@ -135,7 +155,7 @@
             this.ClientSize = new System.Drawing.Size(791, 669);
             this.Controls.Add(this.uiObjectProps);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Verdana", 9F);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -162,5 +182,7 @@
         private System.Windows.Forms.ToolStripMenuItem editShortNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addTitleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addShortNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uiGotoObjectByGuidMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }

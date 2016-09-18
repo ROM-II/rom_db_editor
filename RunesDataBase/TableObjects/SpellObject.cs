@@ -111,17 +111,15 @@ namespace RunesDataBase.TableObjects
         [Category("Spell Properties")]
         [DisplayName("Cost[0]")]
         [Description("How and what it costs to cast this spell")]
-        public SpellCost SpellCost1
-        {
-            get { return new SpellCost(this, 0); }
-        }
+        public SpellCost SpellCost1 
+            => new SpellCost(this, 0);
+
         [Category("Spell Properties")]
         [DisplayName("Cost[1]")]
         [Description("How and what it costs to cast this spell")]
-        public SpellCost SpellCost2
-        {
-            get { return new SpellCost(this, 1); }
-        }
+        public SpellCost SpellCost2 
+            => new SpellCost(this, 1);
+
         [Category("Spell Properties")]
         [DisplayName("Magic")]
         [Description("Magic the spell does")]
@@ -139,17 +137,14 @@ namespace RunesDataBase.TableObjects
         [Category("Spell Properties")]
         [DisplayName("Need[0]")]
         [Description("Requirements for spell")]
-        public SpellNeed SpellNeed1
-        {
-            get { return new SpellNeed(this, 0); }
-        }
+        public SpellNeed SpellNeed1 
+            => new SpellNeed(this, 0);
+
         [Category("Spell Properties")]
         [DisplayName("Need[1]")]
         [Description("Requirements for spell")]
-        public SpellNeed SpellNeed2
-        {
-            get { return new SpellNeed(this, 1); }
-        }
+        public SpellNeed SpellNeed2 
+            => new SpellNeed(this, 1);
 
         [Category("Cooldown")]
         [DisplayName("Cooldown class")]
@@ -301,10 +296,12 @@ namespace RunesDataBase.TableObjects
         }
 
         public override string ToString()
-        {
-            return Value + " of " + NeedType;
-        }
+            => NeedType == SpellNeedType.None
+                ? "<empty>"
+                : $"{Value} of {NeedType}";
     }
+
+    
     public class SpellMagic : StructuredField
     {
         private int _id;
@@ -341,7 +338,9 @@ namespace RunesDataBase.TableObjects
 
         public override string ToString()
         {
-            return MagicBaseID + ", checkfunc: " + CheckFuncType + "(" + Arg0 + ";" + Arg1 + ")";
+            if (CheckFuncType == MagicCheckFunction.None)
+                return MagicBaseID.ToString();
+            return $"{MagicBaseID}, checkfunc: {CheckFuncType}({Arg0}, {Arg1})";
         }
     }
 

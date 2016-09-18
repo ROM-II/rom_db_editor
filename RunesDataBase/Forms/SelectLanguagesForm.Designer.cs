@@ -78,7 +78,7 @@
             this.Controls.Add(this.uiCancel);
             this.Controls.Add(this.uiOK);
             this.Controls.Add(this.uiLanguages);
-            this.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 using Runes.Net.Shared;
 using RunesDataBase.Forms;
@@ -21,7 +22,16 @@ namespace RunesDataBase.Sql
 
         public void Configure(Config cfg)
         {
-            var globalIni = new IniFile(cfg.GlobalIniPath);
+            IniFile globalIni;
+            try
+            {
+                globalIni = new IniFile(cfg.GlobalIniPath);
+                globalIni.Load();
+            }
+            catch (Exception e)
+            {
+                return;
+            }
             RomAccountConnection = new SqlConnection(
                 new SqlConnectionStringBuilder
                 {

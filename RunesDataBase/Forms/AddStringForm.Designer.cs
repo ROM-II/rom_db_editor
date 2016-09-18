@@ -103,7 +103,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.uiKey);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Verdana", 9F);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

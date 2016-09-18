@@ -32,7 +32,7 @@ namespace Runes.Net.Shared
         EqRefineAbility,     //ёЛіЖєл·ТЄн
         Zone,        //°П°м
         CreateRole,      //«ШЁ¤Є«Ґу
-        PE,      //PEјЛЄO
+        Pe,      //PEјЛЄO
         Phantom,     //¤ЫЖF
 
         Max
@@ -97,7 +97,7 @@ namespace Runes.Net.Shared
     [Flags]
     public enum CharacterClassFlags
     {
-        GM = 1,
+        Gm = 1,
         Warrior=2,
         Scout=4,
         Rogue=8,
@@ -118,7 +118,7 @@ namespace Runes.Net.Shared
     public enum CharacterClass
     {
         None = -1,
-        GM = 0,
+        Gm = 0,
         Warrior,
         Scout,
         Rogue,
@@ -581,7 +581,7 @@ namespace Runes.Net.Shared
 
         //固定法術效果
         MagicEarthPower, // "地屬性攻擊" ,
-        MagicWaterhPower, // "水屬性攻擊" ,
+        MagicWaterPower, // "水屬性攻擊" ,
         MagicFirePower, // "火屬性攻擊" ,
         MagicWindhPower, // "風屬性攻擊" ,
         MagicLightPower, // "光屬性攻擊" ,
@@ -625,7 +625,7 @@ namespace Runes.Net.Shared
         NPCExpRate, // "NPC 經驗值修正(%)"
         NPCTpRate, // "NPC TP經驗值修正(%)"
 
-        MaxCount,
+        [Browsable(false)] MaxCount
     }
 
     public enum MagicFunc
@@ -662,20 +662,20 @@ namespace Runes.Net.Shared
 
     public enum DotMagicType
     {
-        HP, //HP
-        MP, //MP
+        Hp, //HP
+        Mp, //MP
         Rage, //戰士SP
         Concentration, //遊俠SP
         Energy, //盜賊SP
-        HPPercent, //HP百分比
-        MPPercent, //MP百分比
+        HpPercent, //HP百分比
+        MpPercent, //MP百分比
 
     }
 
     public enum MagicAttackType
     {
-        HP,
-        MP,
+        Hp,
+        Mp,
         Rage,
         Concentration,
         Energy,
@@ -689,11 +689,11 @@ namespace Runes.Net.Shared
         Weapon, // (本身DMG + 主手DMG)
         Shoot, //  射擊類( 本身DMG + 弓DMG + 彈藥DMG)
         Throw, //  投擲類( 本身DMG + 彈藥DMG)
-        INT,
-        STR,
-        AGI,
-        STA,
-        MND,
+        Int,
+        Str,
+        Agi,
+        Sta,
+        Mnd,
         LastSkillDmg,
         LastPhyDmg,
         ShieldDef,
@@ -778,10 +778,10 @@ namespace Runes.Net.Shared
         ExpProtect              = 0x0000000000800000, //死亡經驗值不扣
         ClientDizzy             = 0x0000000001000000, //暈眩(Client 行為) 
         ClientSleep             = 0x0000000002000000, //睡眠(Client 行為)
-        PKFlag                  = 0x0000000004000000, //PK狀態(有開啟的人就可以PK)
+        PkFlag                  = 0x0000000004000000, //PK狀態(有開啟的人就可以PK)
         TeleportDisable         = 0x0000000008000000, //禁止傳送
-        GPS                     = 0x0000000010000000, //位置定位器致能
-        PKFlagDisabled          = 0x0000000020000000, //PK禁制令
+        Gps                     = 0x0000000010000000, //位置定位器致能
+        PkFlagDisabled          = 0x0000000020000000, //PK禁制令
         AILowAttackPriority     = 0x0000000040000000, //被怪ai攻擊-優先降到最低
         StopOntimeCure          = 0x0000000080000000, //停止HPMPSP定時回復
         Silence                 = 0x0000000100000000, //禁止說話(GM)
@@ -814,11 +814,11 @@ namespace Runes.Net.Shared
         ChangeZone = 0x00000010, //換區消失
         Logout = 0x00000020, //離線消失
         Random = 0x00000040, //亂數消失 Max/3 ~ Max
-        WarriorSP = 0x00000080, //戰士SP為0消失
-        RangerSP = 0x00000100, //遊俠SP為0消失
-        RogueSP = 0x00000200, //盜賊SP為0消失
-        HP = 0x00000400, //HP為0消失
-        MP = 0x00000800, //MP為0消失
+        WarriorSp = 0x00000080, //戰士SP為0消失
+        RangerSp = 0x00000100, //遊俠SP為0消失
+        RogueSp = 0x00000200, //盜賊SP為0消失
+        Hp = 0x00000400, //HP為0消失
+        Mp = 0x00000800, //MP為0消失
         SpellMagicAttack = 0x00001000, //施攻擊法術消失
         SpellPhyAttack = 0x00002000, //施攻擊技能消失
         SpellCure = 0x00004000, //施攻回復魔法消失
@@ -868,7 +868,7 @@ namespace Runes.Net.Shared
 
     public enum MagicShieldType
     {
-        MP, //MP抵消HP
+        Mp, //MP抵消HP
         Times, //抵消次數
         Point, //抵消法數設定的點數
         Percent, //抵銷百分比
@@ -1045,11 +1045,11 @@ namespace Runes.Net.Shared
         Evil,
         Monster,
         Wagon,
-        SNPC,
+        Snpc,
         Visitor,
-        WF_A,
-        WF_B,
-        WF_C,
+        WfA,
+        WfB,
+        WfC,
         Enemy,
         Camp9,
         Camp10,
@@ -1161,10 +1161,16 @@ namespace Runes.Net.Shared
     public enum StatRarity
     {
         Rare0 = 0,
-        Rare1 = 1,
-        Rare2 = 2,
-        Rare3 = 3
+        Green,
+        Yellow,
+        Orange,
+        Purple4,
+        Purple5,
+        Purple6,
+        Purple7,
+        Purple8
     }
+
     public enum ItemUseType
     {
         None,
@@ -1185,8 +1191,8 @@ namespace Runes.Net.Shared
         EqProtect,	//裝備保護
         EqLimitMax,	//裝備耐久上限到Max
         IgnoreLimitLv,	//忽略等級限制
-        PK_EqProtect,	//PK裝備保護
-        PK_EqProtect_Clear,	//PK裝備保護清除
+        PkEqProtect,	//PK裝備保護
+        PkEqProtectClear,	//PK裝備保護清除
         PackageOpen,	//打開包裹物品
         PackageOpenDropList,	//打包物解開(掉落表所有東西)
         Egg,	//商城轉蛋

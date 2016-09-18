@@ -523,12 +523,11 @@ namespace RunesDataBase.TableObjects
             _id = i;
         }
 
-        public override string ToString()
-        {
-            if (IsEmpty)
-                return base.ToString();
-            return string.Format("{2}{0:D} {1}", Value, Type, Value > 0 ? "+" : "");
-        }
+        public override string ToString() 
+            => IsEmpty 
+            ? base.ToString() 
+            : $"{(Value > 0 ? " + " : "")}{Value:D} {Type}";
+
         public WearEquipmentType Type
         {
             get { return (WearEquipmentType)Object.GetFieldAsInt("eqtype" + (_id + 1)); }
@@ -541,8 +540,7 @@ namespace RunesDataBase.TableObjects
         }
 
         [Browsable(false)]
-        public bool IsEmpty {
-            get { return (Type == WearEquipmentType.None || Value == 0); }
-        }
+        public bool IsEmpty 
+            => Type == WearEquipmentType.None || Value == 0;
     }
 }
