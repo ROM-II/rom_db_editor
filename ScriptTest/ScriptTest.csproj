@@ -37,7 +37,7 @@
       <HintPath>..\RunesDataBase\bin\Release\Runes.Net.Db.dll</HintPath>
     </Reference>
     <Reference Include="Runes.Net.Shared">
-      <HintPath>..\RunesDataBase\bin\Release\Runes.Net.Shared.dll</HintPath>
+      <HintPath>..\Runes.Net.Shared\bin\Debug\Runes.Net.Shared.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,6 +50,12 @@
   <ItemGroup>
     <Compile Include="script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RunesDataBase\RunesDataBase.csproj">
+      <Project>{5bf4b72c-c4b7-49c9-8c60-971e09da6b38}</Project>
+      <Name>RunesDataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

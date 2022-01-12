@@ -51,6 +51,9 @@
     <ApplicationIcon>RoM.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fireball, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fireball.2.0.0.1\lib\net20\Fireball.dll</HintPath>
+    </Reference>
     <Reference Include="Fireball.CodeEditor">
       <HintPath>..\..\firefx2\Fireball.CodeEditor.dll</HintPath>
     </Reference>
@@ -72,9 +75,8 @@
       <HintPath>..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RazorEngine, Version=3.9.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
-      <HintPath>..\packages\RazorEngine.3.9.0\lib\net45\RazorEngine.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="RazorEngine, Version=3.9.1.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.9.1\lib\net45\RazorEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -289,9 +291,43 @@
     <None Include="Resources\sui.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Core\Drawing\Shapes\ToDoList.txt" />
+    <Content Include="Docking\Controls\CodeDoc\InertButton.xml" />
+    <Content Include="Docking\Docking\CodeDoc\AutoHidePane.xml" />
+    <Content Include="Docking\Docking\CodeDoc\AutoHidePaneCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\AutoHideStripBase.xml" />
+    <Content Include="Docking\Docking\CodeDoc\AutoHideStripVS2003.xml" />
+    <Content Include="Docking\Docking\CodeDoc\AutoHideTab.xml" />
+    <Content Include="Docking\Docking\CodeDoc\AutoHideTabCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DisplayingDockList.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockContent.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockContentCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockContentHandler.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockList.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPane.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneCaptionBase.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneCaptionVS2003.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPanel.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPanelExtender.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneStripBase.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneStripVS2003.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneTab.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockPaneTabCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockWindow.xml" />
+    <Content Include="Docking\Docking\CodeDoc\DockWindowCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\Enums.xml" />
+    <Content Include="Docking\Docking\CodeDoc\EventArgs.xml" />
+    <Content Include="Docking\Docking\CodeDoc\FloatWindow.xml" />
+    <Content Include="Docking\Docking\CodeDoc\FloatWindowCollection.xml" />
+    <Content Include="Docking\Docking\CodeDoc\Interfaces.xml" />
+    <Content Include="Docking\Docking\CodeDoc\NestedDockingStatus.xml" />
     <Content Include="SubScript\HtmlTemplates\AdvancedResults.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WindowsForms\Resources\show_fever.png" />
+    <Content Include="WindowsForms\Resources\show_more.png" />
+    <Content Include="WindowsForms\Windows\Forms\DiscoverControl.bmp" />
     <None Include="Resources\diskette.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\database_go.png" />
