@@ -117,7 +117,10 @@ namespace RunesDataBase.Forms
             Log.WriteLine("User loaded languages: " + string.Join("; ", languages));
             IsFDBOpened = true;
             uiStatusLabel.Text = "Loading *.db ...";
-            new Task(() => {LoadProcedureAsyncPart(languages);}).Start();
+
+            LoadProcedureAsyncPart(languages);
+
+            //new Task(() => {LoadProcedureAsyncPart(languages);}).Start();
         }
 
         private void LoadProcedureAsyncPart(IEnumerable<string> languages)
@@ -171,22 +174,40 @@ namespace RunesDataBase.Forms
                 return;
             //uiSearchResults.BeginUpdate();
             SetEnabled(false);
-            new Task(() =>
+
+            uint guid;
+            if (uint.TryParse(filter, out guid))
             {
-                uint guid;
-                if (uint.TryParse(filter, out guid))
-                {
-                    ReportStatus("Searching by GUID...");
-                    SearchByGuid(guid);
-                }
-                else
-                {
-                    ReportStatus("Searching by string...");
-                    SearchByString(filter);
-                }
-                ReportStatus();
-                SetEnabled();
-            }).Start();
+                ReportStatus("Searching by GUID...");
+                SearchByGuid(guid);
+            }
+            else
+            {
+                ReportStatus("Searching by string...");
+                SearchByString(filter);
+            }
+            ReportStatus();
+            SetEnabled();
+
+            //new Task(() =>
+            //{
+            //    uint guid;
+            //    if (uint.TryParse(filter, out guid))
+            //    {
+            //        ReportStatus("Searching by GUID...");
+            //        SearchByGuid(guid);
+            //    }
+            //    else
+            //    {
+            //        ReportStatus("Searching by string...");
+            //        SearchByString(filter);
+            //    }
+            //    ReportStatus();
+            //    SetEnabled();
+            //}).Start();
+
+
+
             //uiSearchResults.EndUpdate();
         }
 
@@ -323,9 +344,9 @@ namespace RunesDataBase.Forms
                 if (answer != DialogResult.Yes || uiFindConfig.ShowDialog() != DialogResult.OK)
                 {
                     File.WriteAllText(_cfg.DefaultPath,
-                        @"[Path]" +
-                        @"DataFdb_Path = c:\runewaker\resource\fdb\" +
-                        @"DB_Path = c:\runewaker\resource\data\" +
+                        @"[Path]" + "\n" +
+                        @"DataFdb_Path = c:\runewaker\resource\fdb\" + "\n" +
+                        @"DB_Path = c:\runewaker\resource\data\" + "\n" +
                         @"GlobalIni_Path = C:\Runewaker\Server\Realm_01_Common\Global.ini");
                 }
 
